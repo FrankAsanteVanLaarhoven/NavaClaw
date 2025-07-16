@@ -1,0 +1,50 @@
+{
+  "name": "dataminerai",
+  "version": "1.0.0",
+  "description": "Advanced Web Crawling & Analytics Platform with AI Integration",
+  "main": "index.js",
+  "scripts": {
+    "start": "./start_all.sh",
+    "stop": "./stop_all.sh",
+    "status": "./status.sh",
+    "start:frontend": "./start_frontend.sh",
+    "start:backend": "./start_backend.sh",
+    "start:python": "./start_python.sh",
+    "install:all": "npm run install:frontend && npm run install:backend && npm run install:python",
+    "install:frontend": "cd crawl-frontend && npm install",
+    "install:backend": "cd crawl-frontend/src/backend && npm install",
+    "install:python": "cd my-crawler-py && poetry install",
+    "dev": "./start_all.sh",
+    "build": "npm run build:frontend",
+    "build:frontend": "cd crawl-frontend && npm run build",
+    "clean": "npm run clean:logs && npm run clean:modules",
+    "clean:logs": "rm -f my-crawler-py/python_server.log crawl-frontend/src/backend/backend_server.log crawl-frontend/frontend_server.log",
+    "clean:modules": "rm -rf crawl-frontend/node_modules crawl-frontend/src/backend/node_modules",
+    "reset": "npm run stop && npm run clean && npm run install:all"
+  },
+  "keywords": [
+    "web-crawling",
+    "ai",
+    "analytics",
+    "nextjs",
+    "typescript",
+    "python",
+    "fastapi",
+    "data-mining",
+    "insights"
+  ],
+  "author": "DataMinerAI Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/dataminerai.git"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "workspaces": [
+    "crawl-frontend",
+    "crawl-frontend/src/backend"
+  ]
+} 
