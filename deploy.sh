@@ -76,6 +76,9 @@ ENVEOF
     
     echo '▸ [5/6] Building and starting containers...'
     cd $DEPLOY_DIR
+    echo '  - Cleaning up Docker disk space...'
+    sudo docker system prune -af --volumes || true
+    sudo docker network prune -f || true
     sudo docker compose build --no-cache navaclaw-web
     sudo docker compose up -d
     
