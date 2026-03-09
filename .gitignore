@@ -1,498 +1,254 @@
-# Dependencies
+# ─── Node / Next.js ───────────────────────────────
 node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
-# Next.js
 .next/
 out/
 build/
-dist/
-
-# Production
-/build
-
-# Runtime data
-pids
-*.pid
-*.seed
-*.pid.lock
-
-# Coverage directory used by tools like istanbul
 coverage/
-*.lcov
+.vercel/
 
-# nyc test coverage
-.nyc_output
-
-# Grunt intermediate storage (https://gruntjs.com/creating-plugins#storing-task-files)
-.grunt
-
-# Bower dependency directory (https://bower.io/)
-bower_components
-
-# node-waf configuration
-.lock-wscript
-
-# Compiled binary addons (https://nodejs.org/api/addons.html)
-build/Release
-
-# Dependency directories
-jspm_packages/
-
-# TypeScript cache
-*.tsbuildinfo
-
-# Optional npm cache directory
-.npm
-
-# Optional eslint cache
-.eslintcache
-
-# Optional stylelint cache
-.stylelintcache
-
-# Microbundle cache
-.rpt2_cache/
-.rts2_cache_cjs/
-.rts2_cache_es/
-.rts2_cache_umd/
-
-# Optional REPL history
-.node_repl_history
-
-# Output of 'npm pack'
-*.tgz
-
-# Yarn Integrity file
-.yarn-integrity
-
-# dotenv environment variable files
-.env
-.env.development.local
-.env.test.local
-.env.production.local
-.env.local
-
-# parcel-bundler cache (https://parceljs.org/)
-.cache
-.parcel-cache
-
-# Next.js build output
-.next
-out
-
-# Nuxt.js build / generate output
-.nuxt
-dist
-
-# Gatsby files
-.cache/
-public
-
-# Vuepress build output
-.vuepress/dist
-
-# Serverless directories
-.serverless/
-
-# FuseBox cache
-.fusebox/
-
-# DynamoDB Local files
-.dynamodb/
-
-# TernJS port file
-.tern-port
-
-# Stores VSCode versions used for testing VSCode extensions
-.vscode-test
-
-# yarn v2
-.yarn/cache
-.yarn/unplugged
-.yarn/build-state.yml
-.yarn/install-state.gz
-.pnp.*
-
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
-
-# PyInstaller
-*.manifest
-*.spec
-
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
-.hypothesis/
-.pytest_cache/
-cover/
-
-# Translations
-*.mo
-*.pot
-
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
-
-# Flask stuff:
-instance/
-.webassets-cache
-
-# Scrapy stuff:
-.scrapy
-
-# Sphinx documentation
-docs/_build/
-
-# PyBuilder
-.pybuilder/
-target/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# IPython
-profile_default/
-ipython_config.py
-
-# pyenv
-.python-version
-
-# pipenv
-Pipfile.lock
-
-# poetry
-poetry.lock
-
-# pdm
-.pdm.toml
-
-# PEP 582
-__pypackages__/
-
-# Celery stuff
-celerybeat-schedule
-celerybeat.pid
-
-# SageMath parsed files
-*.sage.py
-
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-
-# Spyder project settings
-.spyderproject
-.spyproject
-
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
-/site
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Pyre type checker
-.pyre/
-
-# pytype static type analyzer
-.pytype/
-
-# Cython debug symbols
-cython_debug/
-
-# PyCharm
-.idea/
-
-# VS Code
-.vscode/
-
-# Database
-*.db
-*.sqlite
-*.sqlite3
-
-# Logs
-logs/
-*.log
-
-# Uploads
-uploads/
-media/
-
-# Cache
-.cache/
-.temp/
-
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
-# Docker
-.dockerignore
-
-# Backup files
-*.bak
-*.backup
-*.swp
-*.swo
-
-# SSL certificates
-*.pem
-*.key
-*.crt
-
-# Monitoring data
-monitoring_data/
-
-# Test coverage
-coverage/
-
-# Storybook
-storybook-static/
-
-# Playwright
-test-results/
-playwright-report/
-playwright/.cache/
-
-# Turbo
-.turbo 
-# Large model files
-backend/yolov8x-seg.pt
-backend/yolov8x.pt
-*.pt
-
-# ═══ Legacy DataMiner exclusions ═══════════════════════════════════
-# These files exist on disk but are NOT part of the Fleet Safe VLA project
-analyst_reports/
-api_responses/
-backend/
-backend_data/
-cache/
-charts_and_graphs/
-company_profiles/
-config/
-core/
-data/
-docs/
-enhanced-frontend/
-iron-archon/
-ironcloud-ai-platform/
-market_data/
-metadata/
-performance-reports/
-processed_data/
-src/
-templates/
-test-reports/
-tests/
-universal_crawler/
-world_leading_crawler/
-~/Desktop/
-*.json
-!package.json
-!hospital_fleet.yaml
-!pwa/manifest.json
-!pipeline/config.yaml
-!dataminerAI.code-workspace
-.env.example
-.eslintrc.json
-.prettierrc
-next-env.d.ts
-next.config.js
-postcss.config.js
-tailwind.config.js
-tsconfig.json
-jest.config.js
-jest.setup.js
-package-lock.json
-Dockerfile.frontend
-# Legacy scripts & docs
-ADVANCED_*.md
-BREAKTHROUGH_*.md
-BUSINESS_*.md
-COMPLETE*.md
-COMPREHENSIVE*.md
-CONSOLIDATION*.md
-DESKTOP_*.md
-ENHANCED_*.md
-FRONTEND_*.md
-IMMEDIATE_*.md
-INTEGRATION_*.md
-INTELLECTUAL_*.md
-IRON_CLOUD_*.md
-LIVE_*.md
-MCP*.md
-MEDIA_*.md
-MICROSERVICES_*.md
-MIGRATION_*.md
-NATURAL_*.md
-PLATFORM_*.md
-PRODUCTION_*.md
-RESOURCE_*.md
-SECURITY_*.md
-SETUP_GUIDE.md
-SPECIALIZED_*.md
-SPORTS_*.md
-STEALTH_*.md
-STOCK_*.md
-TECHNICAL_*.md
-TEST_MATRIX*.md
-TRANSFORMATION_*.md
-TREFIS_*.md
-ULTIMATE_*.md
-WORLD_CLASS_*.md
-# Legacy Python/JS scripts
-*_crawler*.py
-*_scraper*.py
-*intelligence*.py
-*stealth*.py
-*interview*.py
-*microservice*.py
-iron_cloud_*.py
-ironcloud_*.py
-quantum_*.py
-production_*.py
-neural_*.py
-*teleprompter*.py
-*calculator*.py
-outlier_*.py
-devin_*.py
-*demo*.py
-*demo*.js
-*demo*.json
-app.py
-main.py
-config.py
-setup.py
-ai_engine.py
-web_app.py
-simple_web_app.py
-enhanced_app.py
-mcp-server*.js
-*crawler*.js
-host-agent-demo.js
-figma-integration.js
-puppeteer_test.js
-comprehensive-agent-demo.js
-test_*.js
-install.bat
-install.sh
-deploy.sh
-deploy_*.sh
-start_*.sh
-!start_server.scpt
-run_web.sh
-run_test_matrix.sh
-run_devin_crawler.py
-setup_dataminerai.sh
-secure_vps_setup.sh
-quick-start*.sh
-start-*.sh
-world-leading-test-suite.sh
-# Legacy data & media
-*.sql
-navplot-*.pdf
-git_*.py
-git_*.md
-*_summary.md
-*_guide.md
-simple_qr_generator.py
-a.scpt
-dataminerAI.code-workspace
-
-# ── Training Infrastructure ──────────────────────────────
-# Model weights & checkpoints (large binaries)
-checkpoints/
-models/*.onnx
-models/*.pt
-models/*.bin
-models/*.safetensors
-*.ckpt
-
-# Training logs (regenerated on each run)
-training_logs/
-wandb/
-runs/
-
-# W&B offline sync
-training_logs/wandb_offline/
-
-# HuggingFace cache
-.cache/huggingface/
-
-# API keys / secrets (NEVER commit)
-.env
-.env.local
-*.key
-*.pem
-wandb_api_key.txt
-hf_token.txt
-
-# Large data files
-*.h5
-*.hdf5
-*.zarr
-*.npy
-*.npz
-
-# Compiled Python
+# ─── Python ───────────────────────────────────────
 __pycache__/
 *.pyc
 *.pyo
+venv/
+interview_env/
+*.egg-info/
+
+# ─── Environment & Secrets ────────────────────────
+.env
+.env.*
+!.env.production.example
+ssl/
+
+# ─── IDE & OS ─────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ─── Logs & Data ──────────────────────────────────
+*.log
+*.db
+logs/
+data/
+cache/
+downloads/
+crawl_data/
+processed_data/
+metadata/
+training_logs/
+checkpoints/
+test-reports/
+test-results/
+performance-reports/
+playwright-report/
+backups/
+
+# ─── Application-specific repos (NOT part of NavaClaw) ──
+# Fleet Safe VLA research paper & training data
+FLEET-Safe-VLA-Paper/
+fleet/
+preprint/
+cdataset/
+training/
+wandb.settings
+
+# Unitree G1 notebooks & URDF assets
+unitreeG1-NOTEBOOKS/
+unitree_g1_description/
+g1_puppet/
+robopocket/
+pipeline/
+notebooks/
+
+# Isaac Sim USD builders
+build_robot_usd*.py
+build_ward_usd*.py
+test_lidar.py
+test_usd.py
+hospital_fleet.yaml
+launch_fastbot_hospital.sh
+launch_isaac_lab_ros2.sh
+install_isaac_deps.sh
+run_fastbot*.py
+run_hospital_nav.py
+setup_isaac_sim_vm.sh
+fastbot_command_center.html
+fastbot_dashboard.html
+
+# Interview intelligence platform (legacy app, not tool)
+*interview*.py
+*interview*.sh
+*interview*.txt
+*teleprompter*.py
+*teleprompter*.png
+COMPLETE_*_INTERVIEW_*.md
+LIVE_INTERVIEW_*.md
+ULTIMATE_INTERVIEW_*.md
+DESKTOP_INTERVIEW_*.md
+COMPREHENSIVE_INTERVIEW_*.md
+
+# Stealth/Outlier tools (legacy app)
+*stealth*.py
+*stealth*.md
+*stealth*.sh
+outlier_*.md
+outlier_*.py
+
+# Iron Cloud legacy
+iron-archon/
+ironcloud-ai-platform/
+iron_cloud_*.py
+ironcloud_*.py
+IRON_CLOUD_*.md
+
+# Trefis / scraping applications
+trefis_*.py
+danetrades_scraper.py
+requirements_trefis_crawler.txt
+requirements_palantir_scraper.txt
+
+# Demo / test scripts (legacy applications)
+*_demo.py
+*_demo_report.json
+comprehensive-agent-demo.js
+context-aware-demo.js
+host-agent-demo.js
+demo-crawler.js
+simple_microservices_demo*.py
+simple_microservices_demo*.json
+microservices_agent_demo*.py
+microservices_agent_test_report.json
+production_demo*.py
+production_demo_report.json
+world_leading_crawler_demo*.py
+world_leading_crawler_demo_report.json
+advanced_autonomous_demo*.py
+advanced_autonomous_demo*.json
+
+# Media server (separate application)
+media-server-docker-compose.yml
+setup-media-server.sh
+start-media-server.sh
+simple-media-server.py
+MEDIA_SERVER_*.md
+
+# Git/calculator stealth tools (legacy app)
+git_*.py
+git_*.md
+
+# Legacy docs/summaries (application-specific, not framework)
+ADVANCED_*.md
+BREAKTHROUGH_*.md
+BUSINESS_INSIGHTS_AGENT.md
+COMPLETE-SYSTEM-OVERVIEW.md
+COMPREHENSIVE_AGENT_SYSTEM_SUMMARY.md
+CONSOLIDATION_SUMMARY.md
+ENHANCED_PLATFORM_README.md
+FRONTEND_ARCHITECTURE_BLUEPRINT.md
+IMMEDIATE_IMPLEMENTATION_GUIDE.md
+INTEGRATION_PLAN.md
+INTELLECTUAL_PROPERTY_FILINGS.md
+MICROSERVICES_AGENT_SYSTEM_*.md
+MIGRATION_GUIDE.md
+NATURAL_LANGUAGE_CAPABILITIES.md
+PLATFORM_SUMMARY.md
+PRODUCTION_READY_SYSTEM_SUMMARY.md
+RESOURCE_AGENT.md
+SECURITY_README.md
+SETUP_GUIDE.md
+SPECIALIZED_AGENTS_*.md
+SPORTS_BETTING_AGENT.md
+STOCK_MARKET_TRADER_AGENTS.md
+TECHNICAL_ARCHITECTURE_INVESTOR_DECK.md
+TEST_MATRIX_GUIDE.md
+TRANSFORMATION_PROGRESS.md
+TREFIS_CRAWLER_SUMMARY.md
+WORLD_CLASS_*.md
+production_roadmap_and_strategy.md
+final_intelligence_summary.md
+intelligence_summary.md
+comprehensive_osint_final_summary.md
+telegram_skool_final_summary.md
+whatsapp_phone_final_summary.md
+git_comprehensive_summary.md
+git_complete_assistance_summary.md
+
+# Legacy applications (not framework tools)
+enhanced_app.py
+web_app.py
+simple_web_app.py
+app.py
+main.py
+cloud_edge_placement.py
+production_monitoring.py
+production_llm_router.py
+
+# Misc legacy files
+Stop_Server.app/
+.scrub/
+api_responses/
+analyst_reports/
+backend_data/
+charts_and_graphs/
+company_profiles/
+context_storage/
+market_data/
+docs/
+static/
+templates/
+media/
+~/
+*.scpt
+*.applescript
+a.scpt
+start_icon.png
+stop_icon.png
+*.bat
+*.pdf
+test-suite.log
+test_*.js
+test_*.py
+dataminerAI.code-workspace
+dataminerAI_setup.sql
+monitoring_data.db
+storage_metadata.db
+multiseed_monitor.log
+sw.js
+pwa/
+
+# Keep only specific shell scripts
+quick-start*.sh
+run_test_matrix.sh
+run_web.sh
+start-platform.sh
+start_crawler*.sh
+start_enhanced.sh
+start_universal_crawler.sh
+start_web.sh
+monitor_multiseed.sh
+secure_vps_setup.sh
+setup_dataminerai.sh
+world-leading-test-suite.sh
+deploy_stealth_service.sh
+deploy_interview_intelligence.sh
+deploy_ultimate_interview_system.sh
+deploy_training.sh
+
+# Keep only the requirements we need
+requirements_interview.txt
+requirements_interview_intelligence.txt
+requirements_scraper.txt
+desktop_requirements.txt
+
+# Archon (separate project)
+Archon-main/
+
+# Enhanced frontend (replaced by navaclaw-web)
+enhanced-frontend/
+
+# Separate servers
+server/
+backend/
