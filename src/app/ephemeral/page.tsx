@@ -114,7 +114,7 @@ export default function EphemeralPage() {
         <div className="flex flex-col items-center justify-center min-h-[90vh] px-4 animate-[fadeIn_1s_ease-out]">
           {/* Logo / Brand */}
           <div className="mb-12 text-center">
-            <div className="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-zinc-100 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700/50 mb-6 shadow-sm dark:shadow-none">
+            <div className="inline-flex items-center justify-center w-20 h-20 rounded-sm bg-zinc-100 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700/50 mb-6 shadow-sm dark:shadow-none">
               <Zap className="w-10 h-10 text-zinc-800 dark:text-zinc-200" />
             </div>
             <h1 className="text-5xl md:text-7xl font-mono tracking-tighter font-bold text-zinc-900 dark:text-zinc-100 mb-4 selection:bg-zinc-200 dark:selection:bg-zinc-800">
@@ -134,7 +134,7 @@ export default function EphemeralPage() {
                 onKeyDown={e => e.key === 'Enter' && handleSubmit()}
                 placeholder={voiceState === 'listening' ? 'Listening...' : 'What do you want to do?'}
                 className={`
-                  w-full py-5 px-6 pr-24 text-lg rounded-2xl
+                  w-full py-5 px-6 pr-24 text-lg rounded-sm
                   bg-zinc-900/80 border transition-all duration-300
                   placeholder-zinc-500 text-zinc-100
                   focus:outline-none
@@ -151,7 +151,7 @@ export default function EphemeralPage() {
                   <button
                     onClick={toggleVoice}
                     className={`
-                      p-3 rounded-xl transition-all duration-300
+                      p-3 rounded-sm transition-all duration-300
                       ${voiceState === 'listening'
                         ? 'bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.2)] animate-pulse'
                         : 'bg-zinc-800 hover:bg-zinc-700 text-zinc-400 hover:text-white'}
@@ -165,7 +165,7 @@ export default function EphemeralPage() {
                 {/* Submit */}
                 <button
                   onClick={() => handleSubmit()}
-                  className="p-3 rounded-xl bg-white/10 hover:bg-white text-zinc-400 hover:text-black transition-colors"
+                  className="p-3 rounded-sm bg-white/10 hover:bg-white text-zinc-400 hover:text-black transition-colors"
                   title="Submit"
                   id="navaclaw-submit-btn"
                 >
@@ -195,7 +195,7 @@ export default function EphemeralPage() {
                 key={i}
                 onClick={() => quickAction(action.intent)}
                 className="
-                  flex items-center gap-3 px-4 py-3 rounded-xl
+                  flex items-center gap-3 px-4 py-3 rounded-sm
                   bg-zinc-900/50 border border-zinc-800/40
                   hover:bg-zinc-800/80 hover:border-zinc-600/60
                   transition-all duration-200 hover:scale-[1.02]
@@ -233,7 +233,7 @@ export default function EphemeralPage() {
                   getFluxEngine().dissolve();
                   setShowOnboarding(true);
                 }}
-                className="p-2 rounded-lg bg-zinc-800/60 hover:bg-zinc-700 text-zinc-400 transition-colors"
+                className="p-2 rounded-sm bg-zinc-800/60 hover:bg-zinc-700 text-zinc-400 transition-colors"
                 title="Back to Desktop"
                 id="navaclaw-back-btn"
               >
@@ -245,13 +245,13 @@ export default function EphemeralPage() {
                 onChange={e => setInput(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && handleSubmit()}
                 placeholder="What next?"
-                className="flex-1 py-2 px-4 rounded-xl bg-zinc-900/60 border border-zinc-800/40 text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-white/20"
+                className="flex-1 py-2 px-4 rounded-sm bg-zinc-900/60 border border-zinc-800/40 text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-white/20"
                 id="navaclaw-floating-input"
               />
               {voiceSupported && (
                 <button
                   onClick={toggleVoice}
-                  className={`p-2 rounded-lg transition-all ${
+                  className={`p-2 rounded-sm transition-all ${
                     voiceState === 'listening'
                       ? 'bg-white text-black animate-pulse shadow-[0_0_15px_rgba(255,255,255,0.2)]'
                       : 'bg-zinc-800/60 text-zinc-400 hover:text-white hover:bg-zinc-700'
@@ -263,7 +263,7 @@ export default function EphemeralPage() {
               )}
               <button
                 onClick={() => handleSubmit()}
-                className="p-2 rounded-lg bg-white/10 hover:bg-white text-zinc-400 hover:text-black transition-colors"
+                className="p-2 rounded-sm bg-white/10 hover:bg-white text-zinc-400 hover:text-black transition-colors"
                 id="navaclaw-floating-submit"
               >
                 <ArrowRight className="w-4 h-4" />

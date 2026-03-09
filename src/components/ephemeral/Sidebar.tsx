@@ -17,7 +17,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onAction }) => {
   
   // Track which accordion sections are expanded. Default first section to open.
   const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>({
-    'Agent Zero': true
+    'GO Core': true
   });
 
   const isOpen = isPinned || isHovered;
@@ -30,7 +30,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onAction }) => {
 
   const serviceGroups = [
     {
-      heading: 'Agent Zero',
+      heading: 'GO Core',
       items: [
         { icon: MessageSquare, label: 'Chats', intent: 'open agent chat' },
         { icon: FolderGit2, label: 'Projects', intent: 'show my projects' },
@@ -77,15 +77,15 @@ export const Sidebar: React.FC<SidebarProps> = ({ onAction }) => {
     >
       <div className="flex justify-between items-center p-4 border-b border-white/5 h-16 shrink-0 bg-[#111116]/50">
         <div className={`flex items-center gap-3 overflow-hidden transition-all duration-300 ${isOpen ? 'opacity-100 w-auto' : 'opacity-0 w-0'}`}>
-          <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0">
-            <Zap className="w-4 h-4 text-emerald-400" />
+          <div className="w-8 h-8 rounded-sm bg-white/10 border border-white/20 flex items-center justify-center shrink-0">
+            <Zap className="w-4 h-4 text-white" />
           </div>
-          <span className="font-bold tracking-widest text-zinc-100 text-xs shrink-0 drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]">NAVACLAW</span>
+          <span className="font-bold tracking-widest text-zinc-100 text-xs shrink-0 drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]">GO</span>
         </div>
         
         <button
           onClick={() => setIsPinned(!isPinned)}
-          className={`p-1.5 rounded-md hover:bg-white/10 text-zinc-500 hover:text-white transition-colors shrink-0 ${!isOpen && 'mx-auto'}`}
+          className={`p-1.5 rounded-sm hover:bg-white/10 text-zinc-500 hover:text-white transition-colors shrink-0 ${!isOpen && 'mx-auto'}`}
           title={isPinned ? "Unpin sidebar" : "Pin sidebar"}
         >
           {isPinned ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
@@ -98,7 +98,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ onAction }) => {
           const isExpanded = isOpen ? !!expandedGroups[group.heading] : false;
           
           return (
-            <div key={groupIdx} className={`rounded-xl transition-colors duration-200 ${isOpen && isExpanded ? 'bg-white/[0.02] border border-white/[0.05]' : 'border border-transparent'}`}>
+            <div key={groupIdx} className={`rounded-sm transition-colors duration-200 ${isOpen && isExpanded ? 'bg-white/[0.02] border border-white/[0.05]' : 'border border-transparent'}`}>
               
               {/* Accordion Header */}
               <button 
@@ -127,11 +127,11 @@ export const Sidebar: React.FC<SidebarProps> = ({ onAction }) => {
                       // Visual feedback hack: briefly flash the button background 
                       // handled by standard hover/active states in CSS mostly
                     }}
-                    className={`w-full flex items-center gap-3 p-2 rounded-lg hover:bg-white/[0.08] active:bg-emerald-500/20 active:scale-[0.98] transition-all duration-200 group text-left ${isOpen ? 'justify-start' : 'justify-center mx-auto w-10 h-10 mb-2'}`}
+                    className={`w-full flex items-center gap-3 p-2 rounded-sm hover:bg-white/[0.08] active:bg-white/20 active:scale-[0.98] transition-all duration-200 group text-left ${isOpen ? 'justify-start' : 'justify-center mx-auto w-10 h-10 mb-2'}`}
                     title={isOpen ? undefined : svc.label}
                   >
                     <div className="relative flex items-center justify-center shrink-0 w-6 h-6">
-                      <svc.icon className="w-4 h-4 text-zinc-500 group-hover:text-emerald-400 transition-colors" />
+                      <svc.icon className="w-4 h-4 text-zinc-500 group-hover:text-white transition-colors" />
                     </div>
                     
                     {isOpen && (

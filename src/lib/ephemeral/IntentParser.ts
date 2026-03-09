@@ -226,14 +226,14 @@ const CONVERSATIONAL_FALLBACK: ParsedIntent = {
     {
       type: 'agent_chat',
       id: 'main_chat',
-      title: 'NAVACLAW Agent',
+      title: 'GO',
       config: { fullscreen: true, voiceEnabled: true },
       animate: 'fade_in',
     },
     {
       type: 'quick_action',
       id: 'suggestions',
-      title: 'Quick Actions',
+      title: 'GO ACTIONS',
       config: {
         actions: [
           { label: 'Search the web', intent: 'search for latest AI news' },
@@ -412,33 +412,33 @@ export class IntentParser {
     const lc = input.toLowerCase();
     
     // Explicit title overrides for Agent Zero sidebar clicks
-    if (lc.includes('scheduler') || lc.includes('schedule')) return 'Agent Zero Scheduler';
-    if (lc.includes('memories') || lc.includes('memory')) return 'Agent Memory Matrix';
-    if (lc.includes('projects') || lc.includes('tasks')) return 'Project Operations';
-    if (lc.includes('crawler') || lc.includes('dataminer')) return 'Dataminer AI Swarm';
-    if (lc.includes('integrations') || lc.includes('nava integrations')) return 'System Integrations';
+    if (lc.includes('scheduler') || lc.includes('schedule')) return 'GO SCHEDULER';
+    if (lc.includes('memories') || lc.includes('memory')) return 'GO MEMORY';
+    if (lc.includes('projects') || lc.includes('tasks')) return 'GO PROJECTS';
+    if (lc.includes('crawler') || lc.includes('dataminer')) return 'GO DATAMINER';
+    if (lc.includes('integrations') || lc.includes('nava integrations')) return 'GO INTEGRATIONS';
     
     const titles: Record<string, string> = {
-      smart_viewer: target ? `Viewing: ${target}` : input.includes('github') ? 'GitHub Repository' : input.includes('website') ? 'Web Browser' : 'Document Viewer',
-      data_grid: input.includes('project') ? 'Projects' : input.includes('task') ? 'Tasks' : input.includes('schedule') ? 'Scheduler' : 'Data Explorer',
-      insight_card: 'Insights',
-      visual_gallery: 'Visual Gallery',
-      audio_brief: 'Audio Briefing',
-      quick_action: 'Actions',
-      terminal: 'Terminal',
-      agent_chat: 'Agent Zero Chat',
-      code_editor: 'Code Editor',
-      file_browser: 'Files Explorer',
-      chart: 'Analytics',
-      form_builder: input.includes('setting') ? 'System Settings' : 'Configuration',
-      memory_explorer: 'Agent Memory',
-      skill_launcher: 'Skills',
-      fleet_monitor: 'System Resources',
-      security_audit: 'Security Audit',
-      crawler_dashboard: 'Crawler',
-      video_feed: 'Live Feed',
-      notification_center: 'Notifications',
-      trending_intel: 'Trending Intel',
+      smart_viewer: target ? `GO VIEW: ${target}` : input.includes('github') ? 'GO GITHUB' : input.includes('website') ? 'GO BROWSER' : 'GO DOCUMENT',
+      data_grid: input.includes('project') ? 'GO PROJECTS' : input.includes('task') ? 'GO TASKS' : input.includes('schedule') ? 'GO SCHEDULER' : 'GO DATA',
+      insight_card: 'GO INSIGHTS',
+      visual_gallery: 'GO GALLERY',
+      audio_brief: 'GO AUDIO',
+      quick_action: 'GO ACTIONS',
+      terminal: 'GO TERMINAL',
+      agent_chat: 'GO',
+      code_editor: 'GO CODE',
+      file_browser: 'GO FILES',
+      chart: 'GO ANALYTICS',
+      form_builder: input.includes('setting') ? 'GO SETTINGS' : 'GO CONFIG',
+      memory_explorer: 'GO MEMORY',
+      skill_launcher: 'GO SKILLS',
+      fleet_monitor: 'GO RESOURCES',
+      security_audit: 'GO SECURITY',
+      crawler_dashboard: 'GO CRAWLER',
+      video_feed: 'GO FEED',
+      notification_center: 'GO NOTIFICATIONS',
+      trending_intel: 'GO TRENDING',
     };
     return titles[type] ?? type;
   }

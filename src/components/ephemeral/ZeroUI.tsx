@@ -69,7 +69,7 @@ function ParticleField() {
         vy: (Math.random() - 0.5) * 0.3,
         size: Math.random() * 2 + 0.5,
         opacity: Math.random() * 0.4 + 0.1,
-        hue: 155 + Math.random() * 15, // emerald monochrome range
+        hue: 155 + Math.random() * 15, // zinc monochrome range
       });
     }
 
@@ -133,7 +133,7 @@ function ThinkingIndicator() {
         {[0, 1, 2].map((i) => (
           <div
             key={i}
-            className="w-2 h-2 rounded-full bg-emerald-400/60"
+            className="w-2 h-2 rounded-full bg-white/60"
             style={{
               animation: `pulse 1.4s ease-in-out ${i * 0.2}s infinite`,
             }}
@@ -176,7 +176,7 @@ export default function ZeroUI({ className = '', initialMode = 'conversational',
     setMessages([{
       id: 'welcome',
       role: 'system',
-      content: 'NAVACLAW-AI initialized. Type or speak your intent — the interface will materialize around your needs.',
+      content: 'GO initialized. State your intent.',
       timestamp: Date.now(),
     }]);
 
@@ -335,7 +335,7 @@ export default function ZeroUI({ className = '', initialMode = 'conversational',
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Describe what you need…"
                   disabled={isThinking}
-                  className="w-full bg-white/[0.02] border border-white/[0.05] rounded-lg py-3.5 pl-12 pr-24 text-zinc-300 placeholder-zinc-700 focus:outline-none focus:border-emerald-500/25 focus:ring-1 focus:ring-emerald-500/10 transition-all text-sm font-mono tracking-wide disabled:opacity-50"
+                  className="w-full bg-white/[0.02] border border-white/[0.05] rounded-sm py-3.5 pl-12 pr-24 text-zinc-300 placeholder-zinc-700 focus:outline-none focus:border-white/25 focus:ring-1 focus:ring-white/10 transition-all text-sm font-mono tracking-wide disabled:opacity-50"
                   autoFocus
                 />
                 <div className="absolute right-3 flex items-center gap-2">
@@ -345,7 +345,7 @@ export default function ZeroUI({ className = '', initialMode = 'conversational',
                   <button
                     type="submit"
                     disabled={!input.trim() || isThinking}
-                    className="p-2 rounded-lg bg-emerald-500/15 border border-emerald-500/25 text-emerald-400 hover:bg-emerald-500/25 disabled:opacity-30 transition-all"
+                    className="p-2 rounded-sm bg-white/15 border border-white/25 text-white hover:bg-white/25 disabled:opacity-30 transition-all"
                   >
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                       <line x1="22" y1="2" x2="11" y2="13" />
@@ -363,7 +363,7 @@ export default function ZeroUI({ className = '', initialMode = 'conversational',
       <div className="fixed top-4 right-4 z-30 flex items-center gap-2">
         <button
           onClick={() => changeMode(mode === 'immersive' ? 'conversational' : 'immersive')}
-          className="p-2 rounded-lg bg-white/[0.04] border border-white/[0.06] text-zinc-500 hover:text-zinc-300 hover:bg-white/[0.08] transition-all"
+          className="p-2 rounded-sm bg-white/[0.04] border border-white/[0.06] text-zinc-500 hover:text-zinc-300 hover:bg-white/[0.08] transition-all"
           title={mode === 'immersive' ? 'Exit immersive' : 'Go immersive'}
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -403,7 +403,7 @@ export default function ZeroUI({ className = '', initialMode = 'conversational',
 
 function MessageBubble({ message }: { message: Message }) {
   const roleStyles: Record<Message['role'], string> = {
-    user: 'bg-emerald-500/5 border-emerald-500/15 text-zinc-300 ml-auto',
+    user: 'bg-white/5 border-white/15 text-zinc-300 ml-auto',
     agent: 'bg-white/[0.03] border-white/[0.06] text-zinc-300',
     system: 'bg-amber-500/5 border-amber-500/10 text-amber-200/60 text-center text-sm italic',
   };
@@ -416,14 +416,14 @@ function MessageBubble({ message }: { message: Message }) {
 
   return (
     <div className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'} animate-[fadeSlideUp_0.3s_ease-out]`}>
-      <div className={`max-w-[85%] rounded-2xl px-5 py-3 border ${roleStyles[message.role]}`}>
+      <div className={`max-w-[85%] rounded-sm px-5 py-3 border ${roleStyles[message.role]}`}>
         <div className="flex items-start gap-2">
           <span className="text-sm mt-0.5 select-none">{roleIcons[message.role]}</span>
           <p className="text-[14px] leading-relaxed font-light">{message.content}</p>
         </div>
         {message.fluxFrame && (
           <div className="mt-2 pt-2 border-t border-white/[0.06] flex items-center gap-2">
-            <span className="text-[11px] font-mono text-emerald-500/50">
+            <span className="text-[11px] font-mono text-white/50">
               FluxFrame: {message.fluxFrame.layout} · {message.fluxFrame.components.length} components
             </span>
           </div>
@@ -449,11 +449,11 @@ function WelcomeScreen({ onExample }: { onExample: (text: string) => void }) {
     <div className="py-12 text-center animate-[fadeIn_0.8s_ease-out]">
       {/* Logo */}
       <div className="mb-8">
-        <div className="inline-flex items-center justify-center w-16 h-16 rounded-lg bg-emerald-500/5 border border-emerald-500/10 mb-4">
-          <span className="text-3xl font-mono text-emerald-400/60">N</span>
+        <div className="inline-flex items-center justify-center w-16 h-16 rounded-sm bg-white/5 border border-white/10 mb-4">
+          <span className="text-3xl font-mono text-white/60">G</span>
         </div>
         <h1 className="text-3xl font-mono font-light text-zinc-300 tracking-tight">
-          NAVACLAW<span className="text-emerald-400/70">-AI</span>
+          GO
         </h1>
         <p className="text-sm text-zinc-600 mt-2 tracking-wide font-light">
           Ephemeral · Intent-Driven · Dynamic
@@ -466,7 +466,7 @@ function WelcomeScreen({ onExample }: { onExample: (text: string) => void }) {
           <button
             key={ex.text}
             onClick={() => onExample(ex.text)}
-            className="group text-left p-4 rounded-lg bg-white/[0.015] border border-white/[0.04] hover:bg-white/[0.025] hover:border-emerald-500/15 transition-all duration-300"
+            className="group text-left p-4 rounded-sm bg-white/[0.015] border border-white/[0.04] hover:bg-white/[0.025] hover:border-white/15 transition-all duration-300"
           >
             <span className="text-xl mb-2 block">{ex.icon}</span>
             <span className="text-[12px] text-zinc-500 font-mono uppercase tracking-wider block mb-1">
@@ -497,7 +497,7 @@ function getAgentResponse(input: string, frame: FluxFrame): string {
     communicate: `Communication channel opened. You have ${componentNames} available.`,
     create: `Creative workspace generated with ${componentNames}. Start building.`,
     explore: `Explorer view active. ${frame.components.length} tools ready: ${componentNames}.`,
-    agent_zero: `Agent Zero subsystems initialized. Displaying: ${componentNames}.`,
+    agent_zero: `GO subsystems initialized. Displaying: ${componentNames}.`,
     operations: `Operational command loaded. Accessing: ${componentNames}.`
   };
 

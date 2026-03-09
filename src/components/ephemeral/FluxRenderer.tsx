@@ -98,7 +98,7 @@ const FluxComponentCard: React.FC<ComponentProps> = ({ component, theme }) => {
       <div
         className={`
           ${theme.card} ${theme.glow} ${animClass}
-          rounded-2xl border backdrop-blur-xl p-6
+          rounded-sm border backdrop-blur-xl p-6
           transition-all duration-300 hover:scale-[1.02]
           hover:border-opacity-60 cursor-default
           opacity-0 h-full
@@ -108,12 +108,12 @@ const FluxComponentCard: React.FC<ComponentProps> = ({ component, theme }) => {
       >
         {/* Component Header */}
         <div className="flex items-center gap-3 mb-4">
-          <Icon className="w-6 h-6 text-white" />
+          
         <div>
           <h3 className={`font-semibold ${theme.accent} text-sm uppercase tracking-wider`}>
             {component.title || component.type.replace(/_/g, ' ')}
           </h3>
-          <span className="text-xs text-zinc-500">{component.type}</span>
+          
         </div>
         <div className="ml-auto">
           <div className={`w-2 h-2 rounded-full bg-white animate-pulse`} />
@@ -167,7 +167,7 @@ const FluxComponentCard: React.FC<ComponentProps> = ({ component, theme }) => {
           'code_editor', 'skill_launcher', 'trending_intel'].includes(component.type) && (
           <div className="text-zinc-400 text-sm flex items-center justify-center h-full">
             <div className="text-center">
-              <Icon className="w-10 h-10 mx-auto mb-2 text-white/50" />
+              
               <p className="opacity-60">Component ready</p>
             </div>
           </div>
@@ -199,12 +199,12 @@ const AgentChatComponent: React.FC<{ config: Record<string, unknown>; theme: typ
       <div className="flex-1 overflow-y-auto space-y-2 mb-3 scrollbar-thin">
         {messages.length === 0 && (
           <p className="text-zinc-500 text-sm text-center mt-8">
-            {(config.initialMessage as string) || 'Start a conversation with NAVACLAW...'}
+            {(config.initialMessage as string) || 'Initiate sequence...'}
           </p>
         )}
         {messages.map((msg, i) => (
           <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-            <div className={`max-w-[80%] rounded-xl px-4 py-2 text-sm ${
+            <div className={`max-w-[80%] rounded-sm px-4 py-2 text-sm ${
               msg.role === 'user'
                 ? `bg-zinc-200/30 ${theme.text}`
                 : 'bg-zinc-800/60 text-zinc-300'
@@ -221,12 +221,12 @@ const AgentChatComponent: React.FC<{ config: Record<string, unknown>; theme: typ
           onChange={e => setInput(e.target.value)}
           onKeyDown={e => e.key === 'Enter' && sendMessage()}
           placeholder="Type or speak..."
-          className="flex-1 bg-zinc-900/60 border border-zinc-700/50 rounded-xl px-4 py-2 text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-white/50"
+          className="flex-1 bg-zinc-900/60 border border-zinc-700/50 rounded-sm px-4 py-2 text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-white/50"
           id="flux-agent-chat-input"
         />
         <button
           onClick={sendMessage}
-          className="px-4 py-2 bg-zinc-200/80 hover:bg-zinc-200 rounded-xl text-sm font-medium transition-colors"
+          className="px-4 py-2 bg-zinc-200/80 hover:bg-zinc-200 rounded-sm text-sm font-medium transition-colors"
           id="flux-agent-chat-send"
         >
           Send
@@ -237,7 +237,7 @@ const AgentChatComponent: React.FC<{ config: Record<string, unknown>; theme: typ
 };
 
 const TerminalComponent: React.FC<{ config: Record<string, unknown>; theme: typeof THEME_PALETTES['auto'] }> = ({ config }) => {
-  const [lines, setLines] = useState<string[]>(['NAVACLAW-AI Terminal v2.0.0', '$ ']);
+  const [lines, setLines] = useState<string[]>(['Terminal v2.0.0', '$ ']);
   const [input, setInput] = useState('');
 
   const executeCommand = () => {
@@ -247,7 +247,7 @@ const TerminalComponent: React.FC<{ config: Record<string, unknown>; theme: type
   };
 
   return (
-    <div className="bg-black/60 rounded-lg p-3 font-mono text-xs h-[250px] flex flex-col">
+    <div className="bg-black/60 rounded-sm p-3 font-mono text-xs h-[250px] flex flex-col">
       <div className="flex-1 overflow-y-auto text-green-400 space-y-1">
         {lines.map((line, i) => (
           <div key={i} className={line.startsWith('$') ? 'text-white' : 'text-zinc-400'}>
@@ -353,7 +353,7 @@ const QuickActionComponent: React.FC<{ config: Record<string, unknown>; theme: t
           key={i}
           onClick={() => handleAction(action.intent)}
           className={`
-            px-4 py-2 rounded-xl text-sm font-medium
+            px-4 py-2 rounded-sm text-sm font-medium
             bg-zinc-800/60 hover:bg-zinc-700/80 border border-zinc-700/30
             transition-all duration-200 hover:scale-105 hover:border-opacity-60
             ${theme.text}
@@ -449,7 +449,7 @@ const MemoryExplorerComponent: React.FC<{ config: Record<string, unknown>; theme
     <input
       type="text"
       placeholder="Search memories..."
-      className="w-full bg-zinc-900/60 border border-zinc-700/50 rounded-lg px-3 py-2 text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-white/50"
+      className="w-full bg-zinc-900/60 border border-zinc-700/50 rounded-sm px-3 py-2 text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-white/50"
       id="flux-memory-search"
     />
     {[
@@ -474,10 +474,10 @@ const CrawlerDashboardComponent: React.FC<{ config: Record<string, unknown>; the
         type="text"
         placeholder="Enter URL to crawl..."
         defaultValue={(typeof window !== 'undefined' && '') || ''}
-        className="flex-1 bg-zinc-900/60 border border-zinc-700/50 rounded-lg px-3 py-2 text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-amber-500/50"
+        className="flex-1 bg-zinc-900/60 border border-zinc-700/50 rounded-sm px-3 py-2 text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-amber-500/50"
         id="flux-crawler-url"
       />
-      <button className="px-4 py-2 bg-amber-600/80 hover:bg-amber-600 rounded-lg text-sm font-medium transition-colors" id="flux-crawler-start">
+      <button className="px-4 py-2 bg-amber-600/80 hover:bg-amber-600 rounded-sm text-sm font-medium transition-colors" id="flux-crawler-start">
         Crawl
       </button>
     </div>
@@ -487,7 +487,7 @@ const CrawlerDashboardComponent: React.FC<{ config: Record<string, unknown>; the
         { label: 'Assets', value: '0' },
         { label: 'Depth', value: '0' },
       ].map((stat, i) => (
-        <div key={i} className="bg-zinc-900/40 rounded-lg py-2">
+        <div key={i} className="bg-zinc-900/40 rounded-sm py-2">
           <div className={`font-bold text-lg ${theme.accent}`}>{stat.value}</div>
           <div className="text-zinc-500">{stat.label}</div>
         </div>
@@ -497,7 +497,7 @@ const CrawlerDashboardComponent: React.FC<{ config: Record<string, unknown>; the
 );
 
 const CodeEditorComponent: React.FC<{ config: Record<string, unknown>; theme: typeof THEME_PALETTES['auto'] }> = ({ theme }) => (
-  <div className="bg-black/60 rounded-lg overflow-hidden">
+  <div className="bg-black/60 rounded-sm overflow-hidden">
     <div className="flex items-center gap-2 px-3 py-1.5 bg-zinc-900/80 border-b border-zinc-800">
       <div className="flex gap-1.5">
         <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
@@ -526,7 +526,7 @@ const SkillLauncherComponent: React.FC<{ config: Record<string, unknown>; theme:
       <div key={i} className="flex items-center gap-3 py-2 border-b border-zinc-800/30 last:border-0">
         <skill.icon className="w-5 h-5 text-zinc-400" />
         <span className={`${theme.text} text-sm flex-1`}>{skill.name}</span>
-        <button className={`px-3 py-1 rounded-lg text-xs font-medium ${
+        <button className={`px-3 py-1 rounded-sm text-xs font-medium ${
           skill.installed
             ? 'bg-zinc-200/20 text-white border border-white/30'
             : 'bg-zinc-700/40 text-zinc-400 border border-zinc-600/30'

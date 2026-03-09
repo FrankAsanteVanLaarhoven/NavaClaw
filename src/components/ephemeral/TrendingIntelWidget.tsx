@@ -24,7 +24,7 @@ interface TrendingFeed {
 }
 
 const CATEGORY_COLORS: Record<string, string> = {
-  AI: 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10',
+  AI: 'text-white border-white/30 bg-white/10',
   Tech: 'text-cyan-400 border-cyan-500/30 bg-cyan-500/10',
   Crypto: 'text-amber-400 border-amber-500/30 bg-amber-500/10',
   Science: 'text-blue-400 border-blue-500/30 bg-blue-500/10',
@@ -98,9 +98,9 @@ export const TrendingIntelWidget: React.FC<{
       <div className="flex gap-1.5 flex-wrap">
         <button
           onClick={() => setFilter('all')}
-          className={`px-2.5 py-1 rounded-lg text-xs font-mono border transition-all ${
+          className={`px-2.5 py-1 rounded-sm text-xs font-mono border transition-all ${
             filter === 'all'
-              ? 'text-emerald-400 border-emerald-500/40 bg-emerald-500/10'
+              ? 'text-white border-white/40 bg-white/10'
               : 'text-zinc-500 border-zinc-800/40 hover:border-zinc-700'
           }`}
         >
@@ -110,9 +110,9 @@ export const TrendingIntelWidget: React.FC<{
           <button
             key={cat}
             onClick={() => setFilter(cat)}
-            className={`px-2.5 py-1 rounded-lg text-xs font-mono border transition-all ${
+            className={`px-2.5 py-1 rounded-sm text-xs font-mono border transition-all ${
               filter === cat
-                ? CATEGORY_COLORS[cat] || 'text-emerald-400 border-emerald-500/40 bg-emerald-500/10'
+                ? CATEGORY_COLORS[cat] || 'text-white border-white/40 bg-white/10'
                 : 'text-zinc-500 border-zinc-800/40 hover:border-zinc-700'
             }`}
           >
@@ -129,7 +129,7 @@ export const TrendingIntelWidget: React.FC<{
             href={item.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-start gap-3 p-3 rounded-xl bg-zinc-900/40 hover:bg-zinc-800/50 border border-zinc-800/30 hover:border-zinc-700/50 transition-all group"
+            className="flex items-start gap-3 p-3 rounded-sm bg-zinc-900/40 hover:bg-zinc-800/50 border border-zinc-800/30 hover:border-zinc-700/50 transition-all group"
           >
             <div className="flex-1 min-w-0">
               <p className="text-sm text-zinc-200 leading-snug group-hover:text-zinc-100 line-clamp-2">
