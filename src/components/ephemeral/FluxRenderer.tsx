@@ -23,14 +23,14 @@ import {
 // ─── Theme System ────────────────────────────────────────────────
 
 const THEME_PALETTES: Record<FluxTheme | 'monochrome_zinc', { bg: string; card: string; accent: string; text: string; border: string; glow: string }> = {
-  analysis_red: { bg: 'from-[#0b0b0f] via-[#0b0f0d] to-[#0b0b0f]', card: 'bg-[#0d1210]/90 border-white/10', accent: 'text-white', text: 'text-zinc-100', border: 'border-white/15', glow: 'shadow-[0_0_40px_rgba(255,255,255,0.08)]' },
-  studio_neon: { bg: 'from-[#0b0b0f] via-[#0a0f0d] to-[#0b0b0f]', card: 'bg-[#0c1310]/90 border-white/10', accent: 'text-white', text: 'text-zinc-100', border: 'border-white/15', glow: 'shadow-[0_0_40px_rgba(255,255,255,0.1)]' },
-  ocean_deep: { bg: 'from-[#0b0b0f] via-[#0a0e0c] to-[#0b0b0f]', card: 'bg-[#0b1210]/90 border-white/10', accent: 'text-white', text: 'text-zinc-100', border: 'border-white/15', glow: 'shadow-[0_0_40px_rgba(255,255,255,0.08)]' },
-  forest_calm: { bg: 'from-[#0b0b0f] via-[#0a100e] to-[#0b0b0f]', card: 'bg-[#0c1410]/90 border-white/15', accent: 'text-white', text: 'text-zinc-100', border: 'border-white/20', glow: 'shadow-[0_0_40px_rgba(255,255,255,0.12)]' },
-  midnight_gold: { bg: 'from-[#0b0b0f] via-[#0b0f0d] to-[#0b0b0f]', card: 'bg-[#0d1310]/90 border-white/10', accent: 'text-white', text: 'text-zinc-100', border: 'border-white/15', glow: 'shadow-[0_0_40px_rgba(255,255,255,0.1)]' },
-  cyber_emerald: { bg: 'from-[#0b0b0f] via-[#0a110e] to-[#0b0b0f]', card: 'bg-[#0c1510]/90 border-white/15', accent: 'text-white', text: 'text-zinc-100', border: 'border-white/20', glow: 'shadow-[0_0_40px_rgba(255,255,255,0.12)]' },
-  monochrome_zinc: { bg: 'from-[#0b0b0f] via-[#0b0d0c] to-[#0b0b0f]', card: 'bg-[#0d1210]/90 border-white/10', accent: 'text-white', text: 'text-zinc-100', border: 'border-white/15', glow: 'shadow-[0_0_30px_rgba(255,255,255,0.08)]' },
-  auto: { bg: 'from-[#0b0b0f] via-[#0b0d0c] to-[#0b0b0f]', card: 'bg-[#0d1210]/90 border-white/10', accent: 'text-white', text: 'text-zinc-100', border: 'border-white/15', glow: 'shadow-[0_0_30px_rgba(255,255,255,0.06)]' },
+  analysis_red: { bg: 'from-black via-[#050505] to-black', card: 'bg-black/40 backdrop-blur-xl border-white/[0.08]', accent: 'text-white', text: 'text-zinc-300', border: 'border-white/[0.08]', glow: 'shadow-[0_4px_30px_rgba(255,255,255,0.03)]' },
+  studio_neon: { bg: 'from-black via-[#050505] to-black', card: 'bg-black/40 backdrop-blur-xl border-white/[0.08]', accent: 'text-white', text: 'text-zinc-300', border: 'border-white/[0.08]', glow: 'shadow-[0_4px_30px_rgba(255,255,255,0.03)]' },
+  ocean_deep: { bg: 'from-black via-[#050505] to-black', card: 'bg-black/40 backdrop-blur-xl border-white/[0.08]', accent: 'text-white', text: 'text-zinc-300', border: 'border-white/[0.08]', glow: 'shadow-[0_4px_30px_rgba(255,255,255,0.03)]' },
+  forest_calm: { bg: 'from-black via-[#050505] to-black', card: 'bg-black/40 backdrop-blur-xl border-white/[0.08]', accent: 'text-white', text: 'text-zinc-300', border: 'border-white/[0.08]', glow: 'shadow-[0_4px_30px_rgba(255,255,255,0.03)]' },
+  midnight_gold: { bg: 'from-black via-[#050505] to-black', card: 'bg-black/40 backdrop-blur-xl border-white/[0.08]', accent: 'text-white', text: 'text-zinc-300', border: 'border-white/[0.08]', glow: 'shadow-[0_4px_30px_rgba(255,255,255,0.03)]' },
+  cyber_emerald: { bg: 'from-black via-[#050505] to-black', card: 'bg-black/40 backdrop-blur-xl border-white/[0.08]', accent: 'text-white', text: 'text-zinc-300', border: 'border-white/[0.08]', glow: 'shadow-[0_4px_30px_rgba(255,255,255,0.03)]' },
+  monochrome_zinc: { bg: 'from-black via-[#050505] to-black', card: 'bg-black/40 backdrop-blur-xl border-white/[0.08]', accent: 'text-white', text: 'text-zinc-300', border: 'border-white/[0.08]', glow: 'shadow-[0_4px_30px_rgba(255,255,255,0.03)]' },
+  auto: { bg: 'from-black via-[#050505] to-black', card: 'bg-black/40 backdrop-blur-xl border-white/[0.08]', accent: 'text-white', text: 'text-zinc-300', border: 'border-white/[0.08]', glow: 'shadow-[0_4px_30px_rgba(255,255,255,0.03)]' },
 };
 
 // ─── Layout System ───────────────────────────────────────────────
@@ -161,14 +161,63 @@ const FluxComponentCard: React.FC<ComponentProps> = ({ component, theme }) => {
         {component.type === 'trending_intel' && (
           <TrendingIntelWidget config={component.config} theme={theme} />
         )}
+        {component.type === 'smart_viewer' && (
+          <div className="flex flex-col h-full space-y-2">
+            <div className="flex items-center gap-2 px-3 py-1.5 bg-black/40 border border-white/[0.08] rounded-sm">
+              <Globe className="w-4 h-4 text-zinc-500" />
+              <input type="text" readOnly value="https://secure.nava.ai/terminal" className="bg-transparent flex-1 text-xs text-zinc-400 focus:outline-none" />
+            </div>
+            <div className="flex-1 bg-black/20 border border-white/[0.04] rounded-sm p-4 flex items-center justify-center">
+              <span className="text-zinc-600 text-sm font-mono animate-pulse">Establishing secure connection...</span>
+            </div>
+          </div>
+        )}
+        {component.type === 'form_builder' && (
+          <div className="space-y-4 pt-2">
+            <div className="flex items-center justify-between p-3 bg-black/20 border border-white/[0.05] rounded-sm">
+              <div className="flex flex-col">
+                <span className={`text-sm font-medium ${theme.text}`}>Stealth Mode</span>
+                <span className="text-xs text-zinc-500">Route traffic through darknodes</span>
+              </div>
+              <div className="w-8 h-4 bg-white/20 rounded-full relative cursor-pointer">
+                <div className="absolute right-1 top-0.5 w-3 h-3 bg-white rounded-full"></div>
+              </div>
+            </div>
+            <div className="flex items-center justify-between p-3 bg-black/20 border border-white/[0.05] rounded-sm">
+              <div className="flex flex-col">
+                <span className={`text-sm font-medium ${theme.text}`}>Auto-Dissolve</span>
+                <span className="text-xs text-zinc-500">Destroy session on disconnect</span>
+              </div>
+              <div className="w-8 h-4 bg-white/20 rounded-full relative cursor-pointer">
+                <div className="absolute right-1 top-0.5 w-3 h-3 bg-white rounded-full"></div>
+              </div>
+            </div>
+          </div>
+        )}
+        {component.type === 'notification_center' && (
+          <div className="space-y-2">
+            {[
+              { title: 'System Intrusion Attempt', time: 'Just now', type: 'alert' },
+              { title: 'Swarm Deployed', time: '2m ago', type: 'info' },
+              { title: 'Model Checkpoint Saved', time: '1h ago', type: 'success' }
+            ].map((notif, i) => (
+              <div key={i} className="flex gap-3 p-3 bg-black/20 border border-white/[0.05] rounded-sm items-start">
+                <div className={`w-1.5 h-1.5 rounded-full mt-1.5 ${notif.type === 'alert' ? 'bg-red-500' : notif.type === 'success' ? 'bg-zinc-300' : 'bg-white/50'}`} />
+                <div className="flex flex-col flex-1">
+                  <span className={`text-sm ${theme.text}`}>{notif.title}</span>
+                  <span className="text-xs text-zinc-600 mt-0.5">{notif.time}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
         {/* Fallback */}
         {!['agent_chat', 'terminal', 'insight_card', 'chart', 'quick_action', 'data_grid',
           'fleet_monitor', 'security_audit', 'memory_explorer', 'crawler_dashboard',
-          'code_editor', 'skill_launcher', 'trending_intel'].includes(component.type) && (
-          <div className="text-zinc-400 text-sm flex items-center justify-center h-full">
+          'code_editor', 'skill_launcher', 'trending_intel', 'smart_viewer', 'form_builder', 'notification_center'].includes(component.type) && (
+          <div className="text-zinc-600 text-sm flex items-center justify-center h-full min-h-[100px] border border-dashed border-zinc-800 rounded-sm">
             <div className="text-center">
-              
-              <p className="opacity-60">Component ready</p>
+              {'Module Initializing...'}
             </div>
           </div>
         )}
