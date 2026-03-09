@@ -10,8 +10,8 @@ const fontMono = IBM_Plex_Mono({ subsets: ['latin'], variable: '--font-mono', we
 
 export const metadata: Metadata = {
   title: 'NAVACLAW-AI — Ephemeral UI Super-Agent',
-  description: 'SOTA ephemeral UI platform that generates interfaces on demand. Voice, gesture, and intent-driven. Zero-UI agentic system.',
-  keywords: ['AI', 'ephemeral UI', 'zero-UI', 'agent zero', 'voice interface', 'gesture control', 'agentic AI', 'NAVACLAW'],
+  description: 'SOTA ephemeral UI platform that generates interfaces on demand. Voice, gesture, and intent-driven. Advanced agentic system.',
+  keywords: ['AI', 'ephemeral UI', 'invisible UI', 'agent core', 'voice interface', 'gesture control', 'agentic AI', 'NAVACLAW'],
   authors: [{ name: 'Frank Van Laarhoven' }],
   creator: 'Frank Van Laarhoven',
   publisher: 'NAVACLAW-AI',

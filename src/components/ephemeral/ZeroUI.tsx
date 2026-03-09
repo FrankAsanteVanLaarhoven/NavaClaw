@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * NAVACLAW-AI ZeroUI — The "Invisible" Interface
+ * NAVACLAW-AI — The "Invisible" Interface
  *
  * Full-screen conversational agent with no menus, no navigation, no buttons.
  * Intent-driven: speak or type what you want.
@@ -147,7 +147,7 @@ function ThinkingIndicator() {
   );
 }
 
-// ─── ZeroUI Component ────────────────────────────────────────────
+// ─── Ephemeral UI Component ────────────────────────────────────────────
 
 export default function ZeroUI({ className = '', initialMode = 'conversational', onModeChange }: ZeroUIProps) {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -456,7 +456,7 @@ function WelcomeScreen({ onExample }: { onExample: (text: string) => void }) {
           NAVACLAW<span className="text-emerald-400/70">-AI</span>
         </h1>
         <p className="text-sm text-zinc-600 mt-2 tracking-wide font-light">
-          Zero-UI · Intent-Driven · Ephemeral
+          Ephemeral · Intent-Driven · Dynamic
         </p>
       </div>
 

@@ -74,17 +74,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/navaclaw/navaclaw-ai.git"
+    "url": "https://github.com/FrankAsanteVanLaarhoven/NavaClaw.git"
   },
   "keywords": [
     "ephemeral-ui",
-    "zero-ui",
+    "agent-core",
     "agentic-ai",
     "voice-interface",
     "gesture-control",
     "flux-protocol",
     "intent-driven",
-    "agent-zero",
+    "navaclaw",
     "super-agent",
     "nextjs",
     "typescript",

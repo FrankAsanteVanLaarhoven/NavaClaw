@@ -1,7 +1,7 @@
 {
   "name": "NAVACLAW-AI",
   "short_name": "NAVACLAW",
-  "description": "Ephemeral UI Super-Agent — Zero-UI agentic system",
+  "description": "Ephemeral UI Super-Agent — Advanced agentic system",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",

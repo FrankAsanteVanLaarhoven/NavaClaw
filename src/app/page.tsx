@@ -6,7 +6,7 @@
  * Author: Frank Van Laarhoven
  */
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 
 // ─── Matrix Character Rain Background (Inception Labs style) ─────
@@ -197,7 +197,7 @@ export default function Home() {
 
           {/* Subtitle */}
           <p className={`text-sm md:text-base text-zinc-600 max-w-xl mx-auto font-mono leading-relaxed mb-12 transition-all duration-1000 delay-200 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            Zero menus. Zero navigation. Zero fixed layouts.
+            No menus. No navigation. No fixed layouts.
             <br />
             Speak, type, or gesture — tools materialize on demand.
           </p>
@@ -208,7 +208,7 @@ export default function Home() {
               href="/ephemeral"
               className="group px-8 py-3 rounded border border-emerald-500/30 bg-emerald-500/[0.06] text-emerald-400 text-sm font-mono tracking-wider hover:bg-emerald-500/10 hover:border-emerald-500/40 transition-all duration-300"
             >
-              ENTER ZERO-UI
+              ENTER THE CORE
               <span className="inline-block ml-2 group-hover:translate-x-1 transition-transform">→</span>
             </Link>
             <a
@@ -296,7 +296,7 @@ export default function Home() {
           <div className="grid grid-cols-3 gap-3 max-w-xl mx-auto">
             {[
               { name: 'DATAMINER', items: ['Crawler', 'OSINT', 'Fleet VLA', 'Financial'], symbol: '▣' },
-              { name: 'AGENT ZERO', items: ['Sub-Agents', 'Memory', 'Skills', 'Code Exec'], symbol: '▤' },
+              { name: 'AGENT CORE', items: ['Sub-Agents', 'Memory', 'Skills', 'Code Exec'], symbol: '▤' },
               { name: 'OPENCLAW', items: ['WhatsApp', 'Telegram', 'Slack', 'Email'], symbol: '▥' },
             ].map(({ name, items, symbol }) => (
               <div key={name} className="p-4 rounded-lg bg-white/[0.01] border border-white/[0.04]">

@@ -3,7 +3,7 @@
 /**
  * NAVACLAW-AI — Ephemeral UI Main Page
  * 
- * The Zero-UI experience. No menus, no navigation, no fixed layouts.
+ * The Ephemeral UI experience. No menus, no navigation, no fixed layouts.
  * Just speak, type, or gesture → the system builds the tools in real time.
  */
 
@@ -12,7 +12,6 @@ import { FluxRenderer } from '@/components/ephemeral/FluxRenderer';
 import {
   getFluxEngine,
   getIntentParser,
-  FluxFrame,
 } from '@/lib/ephemeral';
 
 // ─── Lazy-load voice/gesture engines (client-only) ───────────────
@@ -104,7 +103,7 @@ export default function EphemeralPage() {
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent" />
       </div>
 
-      {/* ─── Onboarding / Zero-UI Welcome ─────────────────────── */}
+      {/* ─── Onboarding / Ephemeral Welcome ─────────────────────── */}
       {showOnboarding && !hasFrame && (
         <div className="flex flex-col items-center justify-center min-h-screen px-4 animate-[fadeIn_1s_ease-out]">
           {/* Logo / Brand */}
@@ -232,7 +231,7 @@ export default function EphemeralPage() {
                   setShowOnboarding(true);
                 }}
                 className="p-2 rounded-lg bg-zinc-800/60 hover:bg-zinc-700 text-zinc-400 transition-colors"
-                title="Back to Zero-UI"
+                title="Back to Desktop"
                 id="navaclaw-back-btn"
               >
                 ⚡
