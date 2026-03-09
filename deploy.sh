@@ -34,7 +34,7 @@ gcloud compute ssh "$INSTANCE" \
     
     echo '▸ [1/6] Installing dependencies...'
     sudo apt-get update -qq
-    sudo apt-get install -y -qq docker.io docker-compose git certbot python3-certbot-nginx 2>/dev/null
+    sudo apt-get install -y -qq git certbot python3-certbot-nginx 2>/dev/null
     sudo systemctl enable docker
     sudo systemctl start docker
     
@@ -70,13 +70,13 @@ ENVEOF
     
     echo '▸ [5/6] Building and starting containers...'
     cd $DEPLOY_DIR
-    sudo docker-compose down --remove-orphans 2>/dev/null || true
-    sudo docker-compose build --no-cache navaclaw-web
-    sudo docker-compose up -d
+    sudo docker compose down --remove-orphans 2>/dev/null || true
+    sudo docker compose build --no-cache navaclaw-web
+    sudo docker compose up -d
     
     echo '▸ [6/6] Verifying...'
     sleep 10
-    sudo docker-compose ps
+    sudo docker compose ps
     curl -s -o /dev/null -w '%{http_code}' http://localhost:3000 || echo 'Web not ready yet'
     
     echo ''
