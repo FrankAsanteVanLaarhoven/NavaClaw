@@ -4,14 +4,16 @@ import {
   ChevronLeft, ChevronRight, ChevronDown, Zap, TrendingUp,
   Settings, Database, Network, MessageSquare, 
   FolderGit2, Clock, FileText, Globe, Code,
-  ListTodo, Cpu
+  ListTodo, Cpu, Home as HomeIcon
 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 interface SidebarProps {
   onAction: (intent: string) => void;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({ onAction }) => {
+  const router = useRouter();
   const [isPinned, setIsPinned] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   
@@ -75,21 +77,41 @@ export const Sidebar: React.FC<SidebarProps> = ({ onAction }) => {
         isOpen ? 'w-64 shadow-[8px_0_32px_-8px_rgba(0,0,0,0.5)]' : 'w-16'
       }`}
     >
-      <div className="flex justify-between items-center p-4 border-b border-white/5 h-16 shrink-0 bg-[#111116]/50">
-        <div className={`flex items-center gap-3 overflow-hidden transition-all duration-300 ${isOpen ? 'opacity-100 w-auto' : 'opacity-0 w-0'}`}>
-          <div className="w-8 h-8 rounded-sm bg-white/10 border border-white/20 flex items-center justify-center shrink-0">
-            <Zap className="w-4 h-4 text-white" />
+      <div className="flex flex-col border-b border-white/5 bg-[#111116]/50 shrink-0">
+        {/* Top Header Row (Logo + Pin) */}
+        <div className="flex justify-between items-center p-4 h-16">
+          <div className="flex items-center gap-3 overflow-hidden transition-all duration-300">
+            <div 
+              className="w-8 h-8 rounded-sm bg-white/10 border border-white/20 flex items-center justify-center shrink-0 cursor-pointer"
+              onClick={() => setIsPinned(!isPinned)}
+            >
+              <Zap className="w-4 h-4 text-white" />
+            </div>
+            {isOpen && (
+              <span className="font-bold tracking-widest text-zinc-100 text-xs shrink-0 drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]">GO</span>
+            )}
           </div>
-          <span className="font-bold tracking-widest text-zinc-100 text-xs shrink-0 drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]">GO</span>
+          
+          <button
+            onClick={() => setIsPinned(!isPinned)}
+            className={`p-1.5 rounded-sm hover:bg-white/10 text-zinc-500 hover:text-white transition-colors shrink-0 ${!isOpen && 'mx-auto'}`}
+            title={isPinned ? "Unpin sidebar" : "Pin sidebar"}
+          >
+            {isPinned ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+          </button>
         </div>
-        
-        <button
-          onClick={() => setIsPinned(!isPinned)}
-          className={`p-1.5 rounded-sm hover:bg-white/10 text-zinc-500 hover:text-white transition-colors shrink-0 ${!isOpen && 'mx-auto'}`}
-          title={isPinned ? "Unpin sidebar" : "Pin sidebar"}
-        >
-          {isPinned ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
-        </button>
+
+        {/* Global Action Row (Home) */}
+        <div className="px-3 pb-3">
+           <button 
+             onClick={() => router.push('/')}
+             className={`w-full flex items-center gap-3 p-2 rounded-sm text-zinc-400 hover:text-white hover:bg-white/[0.08] active:bg-white/20 active:scale-[0.98] transition-all duration-200 group text-left ${isOpen ? 'justify-start' : 'justify-center mx-auto'}`}
+             title="Return Home"
+           >
+             <HomeIcon className="w-4 h-4 shrink-0 transition-colors" />
+             {isOpen && <span className="text-xs font-medium tracking-wide">Return Home</span>}
+           </button>
+        </div>
       </div>
 
       <div className="flex-1 overflow-y-auto overflow-x-hidden py-4 px-2 space-y-2 scrollbar-none custom-scrollbar-hide">
