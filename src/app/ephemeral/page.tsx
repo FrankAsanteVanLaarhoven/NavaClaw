@@ -120,10 +120,7 @@ export default function EphemeralPage() {
             <h1 className="text-5xl md:text-7xl font-mono tracking-tighter font-bold text-zinc-900 dark:text-zinc-100 mb-4 selection:bg-zinc-200 dark:selection:bg-zinc-800">
               NAVACLAW
             </h1>
-            <p className="text-lg text-zinc-400 max-w-lg mx-auto leading-relaxed">
-              The interface is invisible. Just tell me what you need &mdash; 
-              I&apos;ll build the tools in real time.
-            </p>
+
           </div>
 
           {/* Main Input */}
