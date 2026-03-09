@@ -129,10 +129,6 @@ export default function LandingPage() {
             </span>
           </h1>
 
-          <p className="text-lg sm:text-xl text-zinc-400 max-w-2xl mx-auto mb-12 font-light leading-relaxed">
-            Stop navigating rigid app layouts. State your intent, and NAVACLAW materializes the exact tools, dashboards, and agents you need—then dissolves them when you are done.
-          </p>
-
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link 
               href="/ephemeral" 
