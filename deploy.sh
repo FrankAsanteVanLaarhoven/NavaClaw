@@ -83,9 +83,9 @@ ENVEOF
     sudo docker compose up -d
     
     echo '▸ [6/6] Verifying...'
-    sleep 10
+    sleep 5
     sudo docker compose ps
-    curl -s -o /dev/null -w '%{http_code}' http://localhost:3000 || echo 'Web not ready yet'
+    curl -s -o /dev/null -w '%{http_code}' http://localhost:80 || echo 'Web not ready yet'
     
     echo ''
     echo '═══════════════════════════════════════'
