@@ -48,7 +48,9 @@ gcloud compute ssh "$INSTANCE" \
     fi
     
     echo '▸ [3/6] Setting up SSL for $DOMAIN...'
-    if [ ! -f '/etc/letsencrypt/live/$DOMAIN/fullchain.pem' ]; then
+    sudo systemctl stop nginx || true
+    sudo systemctl disable nginx || true
+    if [ ! -f "/etc/letsencrypt/live/$DOMAIN/fullchain.pem" ]; then
       sudo certbot certonly --standalone -d $DOMAIN -d www.$DOMAIN --non-interactive --agree-tos --email frank@navaclaw.com || echo 'SSL setup skipped — configure DNS first'
     fi
     
@@ -60,8 +62,8 @@ gcloud compute ssh "$INSTANCE" \
     fi
     
     echo '▸ [4/6] Creating production env...'
-    if [ ! -f '$DEPLOY_DIR/.env.production' ]; then
-      cat > $DEPLOY_DIR/.env.production << 'ENVEOF'
+    if [ ! -f "$DEPLOY_DIR/.env.production" ]; then
+      sudo tee $DEPLOY_DIR/.env.production > /dev/null << 'ENVEOF'
 NODE_ENV=production
 NEXT_PUBLIC_APP_URL=https://navaclaw.com
 NEXT_PUBLIC_API_URL=https://navaclaw.com/api
