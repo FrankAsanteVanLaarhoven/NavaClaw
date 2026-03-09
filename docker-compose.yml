@@ -52,23 +52,29 @@ services:
     depends_on:
       - dataminerai-backend
 
-  # DataMinerAI Frontend
-  dataminerai-frontend:
+  # NAVACLAW-AI Web Frontend (Next.js standalone)
+  navaclaw-web:
     build:
-      context: ./Archon-main/archon-ui-main
+      context: .
       dockerfile: Dockerfile
-    container_name: dataminerai-frontend
+    container_name: navaclaw-web
     ports:
-      - "3737:3737"  # Frontend port
+      - "3000:8080"
     environment:
-      - VITE_API_URL=http://localhost:8181
-      - VITE_MCP_URL=http://localhost:8051
-    volumes:
-      - ./Archon-main/archon-ui-main/src:/app/src
-      - ./Archon-main/archon-ui-main/public:/app/public
+      - NODE_ENV=production
+      - PORT=8080
+      - NEXT_PUBLIC_APP_URL=https://navaclaw.com
+      - NEXT_PUBLIC_API_URL=http://dataminerai-backend:8181
+    env_file:
+      - .env.production
     networks:
       - dataminerai-network
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
     depends_on:
       - dataminerai-backend
 
@@ -122,7 +128,7 @@ services:
       - dataminerai-network
     restart: unless-stopped
     depends_on:
-      - dataminerai-frontend
+      - navaclaw-web
       - dataminerai-backend
       - dataminerai-mcp
 

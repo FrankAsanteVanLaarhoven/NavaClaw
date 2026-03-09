@@ -1,0 +1,16 @@
+node_modules
+.next
+.git
+.gitignore
+*.md
+.env*
+!.env.production.example
+.vscode
+.idea
+*.log
+ssl/
+preprint/
+unitreeG1-NOTEBOOKS/
+.scrub/
+Archon-main/
+enhanced-frontend/
