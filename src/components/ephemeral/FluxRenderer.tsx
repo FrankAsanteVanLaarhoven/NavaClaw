@@ -22,63 +22,15 @@ import {
 
 // ─── Theme System ────────────────────────────────────────────────
 
-const THEME_PALETTES: Record<FluxTheme, { bg: string; card: string; accent: string; text: string; border: string; glow: string }> = {
-  analysis_red: {
-    bg: 'from-[#0b0b0f] via-[#0b0f0d] to-[#0b0b0f]',
-    card: 'bg-[#0d1210]/90 border-emerald-500/15',
-    accent: 'text-emerald-400',
-    text: 'text-zinc-100',
-    border: 'border-emerald-500/20',
-    glow: 'shadow-[0_0_40px_rgba(16,185,129,0.08)]',
-  },
-  studio_neon: {
-    bg: 'from-[#0b0b0f] via-[#0a0f0d] to-[#0b0b0f]',
-    card: 'bg-[#0c1310]/90 border-emerald-500/15',
-    accent: 'text-emerald-400',
-    text: 'text-zinc-100',
-    border: 'border-emerald-500/20',
-    glow: 'shadow-[0_0_40px_rgba(16,185,129,0.1)]',
-  },
-  ocean_deep: {
-    bg: 'from-[#0b0b0f] via-[#0a0e0c] to-[#0b0b0f]',
-    card: 'bg-[#0b1210]/90 border-emerald-500/15',
-    accent: 'text-emerald-400',
-    text: 'text-zinc-100',
-    border: 'border-emerald-500/20',
-    glow: 'shadow-[0_0_40px_rgba(16,185,129,0.08)]',
-  },
-  forest_calm: {
-    bg: 'from-[#0b0b0f] via-[#0a100e] to-[#0b0b0f]',
-    card: 'bg-[#0c1410]/90 border-emerald-500/20',
-    accent: 'text-emerald-400',
-    text: 'text-zinc-100',
-    border: 'border-emerald-500/25',
-    glow: 'shadow-[0_0_40px_rgba(16,185,129,0.12)]',
-  },
-  midnight_gold: {
-    bg: 'from-[#0b0b0f] via-[#0b0f0d] to-[#0b0b0f]',
-    card: 'bg-[#0d1310]/90 border-emerald-500/15',
-    accent: 'text-emerald-400',
-    text: 'text-zinc-100',
-    border: 'border-emerald-500/20',
-    glow: 'shadow-[0_0_40px_rgba(16,185,129,0.1)]',
-  },
-  cyber_emerald: {
-    bg: 'from-[#0b0b0f] via-[#0a110e] to-[#0b0b0f]',
-    card: 'bg-[#0c1510]/90 border-emerald-500/20',
-    accent: 'text-emerald-400',
-    text: 'text-zinc-100',
-    border: 'border-emerald-500/25',
-    glow: 'shadow-[0_0_40px_rgba(16,185,129,0.12)]',
-  },
-  auto: {
-    bg: 'from-[#0b0b0f] via-[#0b0d0c] to-[#0b0b0f]',
-    card: 'bg-[#0d1210]/90 border-emerald-500/10',
-    accent: 'text-emerald-400',
-    text: 'text-zinc-100',
-    border: 'border-emerald-500/15',
-    glow: 'shadow-[0_0_30px_rgba(16,185,129,0.06)]',
-  },
+const THEME_PALETTES: Record<FluxTheme | 'monochrome_zinc', { bg: string; card: string; accent: string; text: string; border: string; glow: string }> = {
+  analysis_red: { bg: 'from-[#0b0b0f] via-[#0b0f0d] to-[#0b0b0f]', card: 'bg-[#0d1210]/90 border-white/10', accent: 'text-white', text: 'text-zinc-100', border: 'border-white/15', glow: 'shadow-[0_0_40px_rgba(255,255,255,0.08)]' },
+  studio_neon: { bg: 'from-[#0b0b0f] via-[#0a0f0d] to-[#0b0b0f]', card: 'bg-[#0c1310]/90 border-white/10', accent: 'text-white', text: 'text-zinc-100', border: 'border-white/15', glow: 'shadow-[0_0_40px_rgba(255,255,255,0.1)]' },
+  ocean_deep: { bg: 'from-[#0b0b0f] via-[#0a0e0c] to-[#0b0b0f]', card: 'bg-[#0b1210]/90 border-white/10', accent: 'text-white', text: 'text-zinc-100', border: 'border-white/15', glow: 'shadow-[0_0_40px_rgba(255,255,255,0.08)]' },
+  forest_calm: { bg: 'from-[#0b0b0f] via-[#0a100e] to-[#0b0b0f]', card: 'bg-[#0c1410]/90 border-white/15', accent: 'text-white', text: 'text-zinc-100', border: 'border-white/20', glow: 'shadow-[0_0_40px_rgba(255,255,255,0.12)]' },
+  midnight_gold: { bg: 'from-[#0b0b0f] via-[#0b0f0d] to-[#0b0b0f]', card: 'bg-[#0d1310]/90 border-white/10', accent: 'text-white', text: 'text-zinc-100', border: 'border-white/15', glow: 'shadow-[0_0_40px_rgba(255,255,255,0.1)]' },
+  cyber_emerald: { bg: 'from-[#0b0b0f] via-[#0a110e] to-[#0b0b0f]', card: 'bg-[#0c1510]/90 border-white/15', accent: 'text-white', text: 'text-zinc-100', border: 'border-white/20', glow: 'shadow-[0_0_40px_rgba(255,255,255,0.12)]' },
+  monochrome_zinc: { bg: 'from-[#0b0b0f] via-[#0b0d0c] to-[#0b0b0f]', card: 'bg-[#0d1210]/90 border-white/10', accent: 'text-white', text: 'text-zinc-100', border: 'border-white/15', glow: 'shadow-[0_0_30px_rgba(255,255,255,0.08)]' },
+  auto: { bg: 'from-[#0b0b0f] via-[#0b0d0c] to-[#0b0b0f]', card: 'bg-[#0d1210]/90 border-white/10', accent: 'text-white', text: 'text-zinc-100', border: 'border-white/15', glow: 'shadow-[0_0_30px_rgba(255,255,255,0.06)]' },
 };
 
 // ─── Layout System ───────────────────────────────────────────────
@@ -156,7 +108,7 @@ const FluxComponentCard: React.FC<ComponentProps> = ({ component, theme }) => {
       >
         {/* Component Header */}
         <div className="flex items-center gap-3 mb-4">
-          <Icon className="w-6 h-6 text-emerald-400" />
+          <Icon className="w-6 h-6 text-white" />
         <div>
           <h3 className={`font-semibold ${theme.accent} text-sm uppercase tracking-wider`}>
             {component.title || component.type.replace(/_/g, ' ')}
@@ -164,7 +116,7 @@ const FluxComponentCard: React.FC<ComponentProps> = ({ component, theme }) => {
           <span className="text-xs text-zinc-500">{component.type}</span>
         </div>
         <div className="ml-auto">
-          <div className={`w-2 h-2 rounded-full bg-emerald-500 animate-pulse`} />
+          <div className={`w-2 h-2 rounded-full bg-white animate-pulse`} />
         </div>
       </div>
 
@@ -215,7 +167,7 @@ const FluxComponentCard: React.FC<ComponentProps> = ({ component, theme }) => {
           'code_editor', 'skill_launcher', 'trending_intel'].includes(component.type) && (
           <div className="text-zinc-400 text-sm flex items-center justify-center h-full">
             <div className="text-center">
-              <Icon className="w-10 h-10 mx-auto mb-2 text-emerald-500/50" />
+              <Icon className="w-10 h-10 mx-auto mb-2 text-white/50" />
               <p className="opacity-60">Component ready</p>
             </div>
           </div>
@@ -254,7 +206,7 @@ const AgentChatComponent: React.FC<{ config: Record<string, unknown>; theme: typ
           <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
             <div className={`max-w-[80%] rounded-xl px-4 py-2 text-sm ${
               msg.role === 'user'
-                ? `bg-emerald-600/30 ${theme.text}`
+                ? `bg-zinc-200/30 ${theme.text}`
                 : 'bg-zinc-800/60 text-zinc-300'
             }`}>
               {msg.content}
@@ -269,12 +221,12 @@ const AgentChatComponent: React.FC<{ config: Record<string, unknown>; theme: typ
           onChange={e => setInput(e.target.value)}
           onKeyDown={e => e.key === 'Enter' && sendMessage()}
           placeholder="Type or speak..."
-          className="flex-1 bg-zinc-900/60 border border-zinc-700/50 rounded-xl px-4 py-2 text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-emerald-500/50"
+          className="flex-1 bg-zinc-900/60 border border-zinc-700/50 rounded-xl px-4 py-2 text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-white/50"
           id="flux-agent-chat-input"
         />
         <button
           onClick={sendMessage}
-          className="px-4 py-2 bg-emerald-600/80 hover:bg-emerald-600 rounded-xl text-sm font-medium transition-colors"
+          className="px-4 py-2 bg-zinc-200/80 hover:bg-zinc-200 rounded-xl text-sm font-medium transition-colors"
           id="flux-agent-chat-send"
         >
           Send
@@ -298,7 +250,7 @@ const TerminalComponent: React.FC<{ config: Record<string, unknown>; theme: type
     <div className="bg-black/60 rounded-lg p-3 font-mono text-xs h-[250px] flex flex-col">
       <div className="flex-1 overflow-y-auto text-green-400 space-y-1">
         {lines.map((line, i) => (
-          <div key={i} className={line.startsWith('$') ? 'text-emerald-400' : 'text-zinc-400'}>
+          <div key={i} className={line.startsWith('$') ? 'text-white' : 'text-zinc-400'}>
             {line}
           </div>
         ))}
@@ -308,7 +260,7 @@ const TerminalComponent: React.FC<{ config: Record<string, unknown>; theme: type
         value={input}
         onChange={e => setInput(e.target.value)}
         onKeyDown={e => e.key === 'Enter' && executeCommand()}
-        className="bg-transparent border-t border-zinc-800 pt-2 text-emerald-400 placeholder-zinc-600 focus:outline-none"
+        className="bg-transparent border-t border-zinc-800 pt-2 text-white placeholder-zinc-600 focus:outline-none"
         placeholder="Enter command..."
         id="flux-terminal-input"
       />
@@ -327,7 +279,7 @@ const InsightCardComponent: React.FC<{ config: Record<string, unknown>; theme: t
         <span className="text-zinc-400 text-sm">{metric.label}</span>
         <div className="flex items-center gap-2">
           <span className={`font-semibold ${theme.text}`}>{metric.value}</span>
-          <span className={`text-xs ${metric.positive ? 'text-emerald-400' : 'text-red-400'}`}>
+          <span className={`text-xs ${metric.positive ? 'text-white' : 'text-red-400'}`}>
             {metric.change}
           </span>
         </div>
@@ -433,7 +385,7 @@ const DataGridComponent: React.FC<{ config: Record<string, unknown>; theme: type
         ].map((row, i) => (
           <tr key={i} className="border-b border-zinc-800/30 hover:bg-zinc-800/20">
             {row.map((cell, j) => (
-              <td key={j} className={`py-2 px-3 ${j === 1 ? (cell.includes('Active') ? 'text-emerald-400' : 'text-zinc-500') : theme.text}`}>{cell}</td>
+              <td key={j} className={`py-2 px-3 ${j === 1 ? (cell.includes('Active') ? 'text-white' : 'text-zinc-500') : theme.text}`}>{cell}</td>
             ))}
           </tr>
         ))}
@@ -450,18 +402,18 @@ const FleetMonitorComponent: React.FC<{ config: Record<string, unknown>; theme: 
       { name: 'G1-Gamma', battery: 95, status: 'patrolling', zone: 'Corridor-B' },
     ].map((bot, i) => (
       <div key={i} className="flex items-center gap-3 py-2">
-        <Bot className="w-6 h-6 text-emerald-500" />
+        <Bot className="w-6 h-6 text-white" />
         <div className="flex-1">
           <div className="flex justify-between">
             <span className={`font-medium ${theme.text} text-sm`}>{bot.name}</span>
-            <span className={`text-xs ${bot.status === 'navigating' ? 'text-emerald-400' : bot.status === 'charging' ? 'text-amber-400' : 'text-blue-400'}`}>
+            <span className={`text-xs ${bot.status === 'navigating' ? 'text-white' : bot.status === 'charging' ? 'text-amber-400' : 'text-blue-400'}`}>
               {bot.status}
             </span>
           </div>
           <div className="flex items-center gap-2 mt-1">
             <div className="flex-1 h-1.5 bg-zinc-800 rounded-full overflow-hidden">
               <div
-                className={`h-full rounded-full transition-all ${bot.battery > 70 ? 'bg-emerald-500' : bot.battery > 30 ? 'bg-amber-500' : 'bg-red-500'}`}
+                className={`h-full rounded-full transition-all ${bot.battery > 70 ? 'bg-white' : bot.battery > 30 ? 'bg-amber-500' : 'bg-red-500'}`}
                 style={{ width: `${bot.battery}%` }}
               />
             </div>
@@ -484,9 +436,9 @@ const SecurityAuditComponent: React.FC<{ config: Record<string, unknown>; theme:
       { check: 'Secrets exposure scan', status: 'pass' },
     ].map((item, i) => (
       <div key={i} className="flex items-center gap-3 py-1.5 text-sm">
-        <CheckCircle className="w-4 h-4 text-emerald-500" />
+        <CheckCircle className="w-4 h-4 text-white" />
         <span className={theme.text}>{item.check}</span>
-        <span className="ml-auto text-emerald-400 text-xs font-medium uppercase">{item.status}</span>
+        <span className="ml-auto text-white text-xs font-medium uppercase">{item.status}</span>
       </div>
     ))}
   </div>
@@ -497,7 +449,7 @@ const MemoryExplorerComponent: React.FC<{ config: Record<string, unknown>; theme
     <input
       type="text"
       placeholder="Search memories..."
-      className="w-full bg-zinc-900/60 border border-zinc-700/50 rounded-lg px-3 py-2 text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-emerald-500/50"
+      className="w-full bg-zinc-900/60 border border-zinc-700/50 rounded-lg px-3 py-2 text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-white/50"
       id="flux-memory-search"
     />
     {[
@@ -506,10 +458,10 @@ const MemoryExplorerComponent: React.FC<{ config: Record<string, unknown>; theme
       { key: 'Fleet deployment #12', similarity: 0.82, age: '3d ago' },
     ].map((mem, i) => (
       <div key={i} className="flex items-center gap-2 py-1.5 text-sm border-b border-zinc-800/30 last:border-0">
-        <Brain className="w-4 h-4 text-emerald-400" />
+        <Brain className="w-4 h-4 text-white" />
         <span className={theme.text}>{mem.key}</span>
         <span className="ml-auto text-xs text-zinc-500">{mem.age}</span>
-        <span className="text-xs text-emerald-400">{Math.round(mem.similarity * 100)}%</span>
+        <span className="text-xs text-white">{Math.round(mem.similarity * 100)}%</span>
       </div>
     ))}
   </div>
@@ -550,7 +502,7 @@ const CodeEditorComponent: React.FC<{ config: Record<string, unknown>; theme: ty
       <div className="flex gap-1.5">
         <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
         <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
-        <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+        <div className="w-2.5 h-2.5 rounded-full bg-white/80" />
       </div>
       <span className="text-xs text-zinc-500 ml-2">{(typeof window !== 'undefined' && 'untitled.py') || 'untitled.py'}</span>
     </div>
@@ -576,7 +528,7 @@ const SkillLauncherComponent: React.FC<{ config: Record<string, unknown>; theme:
         <span className={`${theme.text} text-sm flex-1`}>{skill.name}</span>
         <button className={`px-3 py-1 rounded-lg text-xs font-medium ${
           skill.installed
-            ? 'bg-emerald-600/20 text-emerald-400 border border-emerald-500/30'
+            ? 'bg-zinc-200/20 text-white border border-white/30'
             : 'bg-zinc-700/40 text-zinc-400 border border-zinc-600/30'
         }`}>
           {skill.installed ? 'Launch' : 'Install'}
