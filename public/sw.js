@@ -31,35 +31,48 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// Fetch — network-first with cache fallback
+// Fetch — Offline-first approach for PWA capabilities
 self.addEventListener('fetch', (event) => {
-  // Skip non-GET requests
   if (event.request.method !== 'GET') return;
   
-  // Skip API calls and WebRTC signaling
   const url = new URL(event.request.url);
+  // Do not cache API or WebRTC routes
   if (url.pathname.startsWith('/api/') || url.pathname.startsWith('/ws/')) return;
   
-  event.respondWith(
-    fetch(event.request)
-      .then((response) => {
-        // Cache successful responses
-        if (response.status === 200) {
-          const responseClone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, responseClone);
-          });
+  // Cache First strategy for static assets (images, JS, CSS)
+  if (url.pathname.match(/\.(png|jpg|jpeg|svg|gif|css|js|webp|avif)$/)) {
+    event.respondWith(
+      caches.match(event.request).then((cachedResponse) => {
+        if (cachedResponse) {
+          return cachedResponse;
         }
-        return response;
-      })
-      .catch(() => {
-        // Fallback to cache
-        return caches.match(event.request).then((cached) => {
-          return cached || new Response('Offline — NAVACLAW-AI', {
-            status: 503,
-            headers: { 'Content-Type': 'text/plain' },
-          });
+        return fetch(event.request).then((networkResponse) => {
+          if (networkResponse.ok) {
+            const clone = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+          }
+          return networkResponse;
         });
       })
+    );
+    return;
+  }
+
+  // Stale-While-Revalidate for HTML/Navigation
+  event.respondWith(
+    caches.match(event.request).then((cachedResponse) => {
+      const networkFetch = fetch(event.request).then((networkResponse) => {
+        if (networkResponse.ok) {
+          const clone = networkResponse.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+        }
+        return networkResponse;
+      }).catch(() => {
+        return cachedResponse || new Response('<html><body><h1>NAVACLAW-AI</h1><p>Running in offline mode.</p></body></html>', {
+          headers: { 'Content-Type': 'text/html' }
+        });
+      });
+      return cachedResponse || networkFetch;
+    })
   );
 });

@@ -419,7 +419,7 @@ const DataGridComponent: React.FC<{ config: Record<string, unknown>; theme: type
         {[
           ['Agent Alpha', '● Active', '98.2%', '2m ago'],
           ['CrawlBot v3', '● Active', '95.8%', '5m ago'],
-          ['Fleet Safety', '○ Idle', '99.1%', '1h ago'],
+          ['Core Health', '○ Idle', '99.1%', '1h ago'],
         ].map((row, i) => (
           <tr key={i} className="border-b border-zinc-800/30 hover:bg-zinc-800/20">
             {row.map((cell, j) => (
