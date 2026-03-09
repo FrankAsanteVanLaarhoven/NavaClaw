@@ -276,13 +276,22 @@ def train_cbf_with_labels(model, cbf, device, obs_dim, act_dim, epochs=100):
     from fleet_extended_train import generate_zone_dataset
 
     print("  Training fresh model with safe/unsafe labels (100 epochs)...")
-    obs_data, act_data = generate_zone_dataset(1000, 50)
-    obs_data, act_data = obs_data.to(device), act_data.to(device)
+    raw_data = generate_zone_dataset(1000, 50)
+    # Flatten episodes to (obs, act) tensors
+    all_obs, all_acts = [], []
+    for ep in raw_data:
+        for obs, act in ep:
+            all_obs.append(obs)
+            all_acts.append(act)
+    obs_data = torch.tensor(np.array(all_obs)).to(device)
+    act_data = torch.tensor(np.array(all_acts)).to(device)
     n = obs_data.shape[0]
 
     # Label: safe = lidar[:8] all > 0.3 (no close obstacles), unsafe = any < 0.3
-    lidar_start = 4  # obs = [pos(2) + vel(2) + lidar(8) + zone(12) + extras]
-    lidar_vals = obs_data[:, lidar_start:lidar_start+8]
+    # zone_dataset obs: [zone_oh(12) + pos(2) + vel(2) + goal(3) + dist(1) + lidar(8) + t(1)]
+    lidar_start = 20  # lidar starts at index 20
+    lidar_end = min(lidar_start + 8, obs_data.shape[1])
+    lidar_vals = obs_data[:, lidar_start:lidar_end]
     min_lidar = lidar_vals.min(dim=1).values
     is_safe = (min_lidar > 0.3).float()  # 1 = safe, 0 = unsafe
 
