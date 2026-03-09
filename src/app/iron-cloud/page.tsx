@@ -228,7 +228,7 @@ export default function IronCloudPage() {
               </div>
               <div className="bg-gray-800/50 rounded-lg p-4">
                 <h3 className="text-lg font-semibold text-red-300">Techniques</h3>
-                <p className="text-xl text-purple-400">{ironCloudStatus.techniques_available}</p>
+                <p className="text-xl text-emerald-400">{ironCloudStatus.techniques_available}</p>
               </div>
             </div>
             <div className="mt-4">
@@ -417,10 +417,10 @@ export default function IronCloudPage() {
             </Link>
           </GlowCard>
           
-          <GlowCard className="p-6 text-center transition-all transform hover:scale-105" customSize glowColor="purple">
+          <GlowCard className="p-6 text-center transition-all transform hover:scale-105" customSize glowColor="emerald">
             <Link href="/agent-templates" className="block">
               <h3 className="text-xl font-bold mb-2 text-white">🤖 AI Templates</h3>
-              <p className="text-purple-100">Agent templates and use cases</p>
+              <p className="text-emerald-100">Agent templates and use cases</p>
             </Link>
           </GlowCard>
           

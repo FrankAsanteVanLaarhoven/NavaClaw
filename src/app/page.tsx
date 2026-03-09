@@ -8,79 +8,9 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { Zap, Mic, Fingerprint, Layers, MessageSquare, Key, Database, Cpu, Plug } from 'lucide-react';
 
-// ─── Matrix Character Rain Background (Inception Labs style) ─────
-
-function MatrixRain() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    let animId: number;
-
-    const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    resize();
-    window.addEventListener('resize', resize);
-
-    const chars = 'NAVACLAW01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
-    const fontSize = 12;
-    const columns = Math.floor(canvas.width / fontSize);
-    const drops: number[] = new Array(columns).fill(0).map(() => Math.random() * -100);
-
-    const draw = () => {
-      // Fade effect — very subtle trail
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.06)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      ctx.font = `${fontSize}px "IBM Plex Mono", monospace`;
-
-      for (let i = 0; i < drops.length; i++) {
-        const char = chars[Math.floor(Math.random() * chars.length)];
-        const x = i * fontSize;
-        const y = drops[i] * fontSize;
-
-        // Head character is brighter
-        const isHead = Math.random() > 0.95;
-        if (isHead) {
-          ctx.fillStyle = 'rgba(16, 185, 129, 0.9)'; // emerald-500
-        } else {
-          const opacity = 0.03 + Math.random() * 0.12;
-          ctx.fillStyle = `rgba(16, 185, 129, ${opacity})`;
-        }
-
-        ctx.fillText(char, x, y);
-
-        if (y > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0;
-        }
-        drops[i] += 0.5 + Math.random() * 0.5;
-      }
-
-      animId = requestAnimationFrame(draw);
-    };
-    draw();
-
-    return () => {
-      cancelAnimationFrame(animId);
-      window.removeEventListener('resize', resize);
-    };
-  }, []);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-0"
-      aria-hidden="true"
-    />
-  );
-}
+import { CharacterMosaic } from '@/components/ui/MatrixRain';
 
 // ─── Feature Card ────────────────────────────────────────────────
 
@@ -94,7 +24,7 @@ function FeatureCard({ icon, title, description, delay }: {
     >
       <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-emerald-500/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       <div className="relative">
-        <div className="w-10 h-10 rounded-md bg-emerald-500/5 border border-emerald-500/10 flex items-center justify-center mb-4 group-hover:border-emerald-500/25 transition-colors font-mono text-emerald-500/60 text-sm">
+        <div className="w-10 h-10 rounded-md bg-emerald-500/5 border border-emerald-500/10 flex items-center justify-center mb-4 group-hover:border-emerald-500/25 transition-colors">
           {icon}
         </div>
         <h3 className="text-sm font-medium text-zinc-300 mb-2 tracking-tight">{title}</h3>
@@ -143,7 +73,15 @@ function StatCounter({ value, label, suffix = '' }: { value: number; label: stri
 
 // ─── Main Landing ────────────────────────────────────────────────
 
-export default function Home() {
+export default function LandingPage() {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -151,100 +89,87 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="relative min-h-screen text-zinc-300 bg-black">
-      <MatrixRain />
+    <div className="min-h-screen bg-transparent text-zinc-100 selection:bg-white/20 font-sans">
+      <CharacterMosaic />
 
       {/* Navigation — Palantir minimal */}
-      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-black/70 border-b border-white/[0.03]">
-        <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-7 h-7 rounded border border-emerald-500/20 bg-emerald-500/5 flex items-center justify-center">
-              <span className="text-emerald-400 text-xs font-mono font-bold">N</span>
-            </div>
-            <span className="text-sm font-mono tracking-[0.15em] text-zinc-400">
-              NAVACLAW<span className="text-emerald-500/70">-AI</span>
-            </span>
+      <nav className={`fixed top-0 left-0 right-0 z-50 px-6 py-4 flex items-center justify-between transition-all duration-500 ${scrollY > 50 ? 'bg-black/80 backdrop-blur-md border-b border-white/[0.05]' : ''}`}>
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 rounded-md bg-white/10 flex items-center justify-center border border-white/20 shadow-[0_0_15px_rgba(255,255,255,0.05)]">
+            <Zap className="w-4 h-4 text-white" />
           </div>
-          <div className="flex items-center gap-4">
-            <span className="hidden sm:inline text-[10px] font-mono text-zinc-700 tracking-wider">v2.0.0</span>
-            <Link
-              href="/ephemeral"
-              className="px-4 py-1.5 rounded border border-emerald-500/20 bg-emerald-500/5 text-emerald-400 text-xs font-mono tracking-wider hover:bg-emerald-500/10 hover:border-emerald-500/30 transition-all"
-            >
-              LAUNCH →
-            </Link>
-          </div>
+          <span className="font-bold tracking-[0.2em] text-white text-sm">NAVACLAW<span className="text-zinc-500 font-light">.AI</span></span>
+        </div>
+        <div className="flex items-center gap-6">
+          <Link href="/ephemeral" className="text-xs font-mono text-zinc-400 hover:text-white transition-colors uppercase tracking-widest hidden sm:block">
+            Workspace
+          </Link>
+          <Link href="https://github.com/FrankAsanteVanLaarhoven/NavaClaw" className="text-xs font-mono text-zinc-400 hover:text-white transition-colors uppercase tracking-widest">
+            GitHub
+          </Link>
         </div>
       </nav>
 
-      {/* Hero — Dark terminal aesthetic */}
-      <section className="relative pt-36 pb-24 px-6 z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Status badge */}
-          <div className={`inline-flex items-center gap-2 px-3 py-1 rounded border border-emerald-500/10 bg-emerald-500/[0.03] mb-8 transition-all duration-700 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-[10px] font-mono text-emerald-500/60 tracking-[0.2em]">SYSTEM ONLINE</span>
-          </div>
+      {/* Hero Section */}
+      <section className="relative pt-40 pb-20 px-6 min-h-[90vh] flex flex-col items-center justify-center -mt-16 overflow-hidden">
+        
+        {/* Animated Glow behind hero */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/[0.02] rounded-full blur-[120px] pointer-events-none" />
 
-          {/* Headline */}
-          <h1 className={`text-4xl md:text-6xl lg:text-7xl font-mono font-light text-zinc-200 tracking-tight leading-[1.1] mb-6 transition-all duration-1000 delay-100 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-            THE INTERFACE
-            <br />
-            <span className="text-emerald-400/80">
-              IS THE INTENT
+        <div className={`relative z-10 max-w-4xl mx-auto text-center transition-all duration-1000 transform ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.05] mb-8">
+            <span className="flex w-2 h-2 rounded-full bg-white animate-pulse"></span>
+            <span className="text-[10px] font-mono tracking-widest text-zinc-400 uppercase">System Active</span>
+          </div>
+          
+          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tighter text-white mb-6 leading-[1.1] selection:bg-white/20">
+            THE EPHEMERAL <br className="hidden sm:block"/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-200 via-white to-zinc-500">
+              WORKSPACE.
             </span>
           </h1>
 
-          {/* Subtitle */}
-          <p className={`text-sm md:text-base text-zinc-600 max-w-xl mx-auto font-mono leading-relaxed mb-12 transition-all duration-1000 delay-200 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            No menus. No navigation. No fixed layouts.
-            <br />
-            Speak, type, or gesture — tools materialize on demand.
+          <p className="text-lg sm:text-xl text-zinc-400 max-w-2xl mx-auto mb-12 font-light leading-relaxed">
+            Stop navigating rigid app layouts. State your intent, and NAVACLAW materializes the exact tools, dashboards, and agents you need—then dissolves them when you are done.
           </p>
 
-          {/* CTA */}
-          <div className={`flex flex-col sm:flex-row items-center justify-center gap-4 transition-all duration-1000 delay-300 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            <Link
-              href="/ephemeral"
-              className="group px-8 py-3 rounded border border-emerald-500/30 bg-emerald-500/[0.06] text-emerald-400 text-sm font-mono tracking-wider hover:bg-emerald-500/10 hover:border-emerald-500/40 transition-all duration-300"
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link 
+              href="/ephemeral" 
+              className="group relative px-8 py-4 bg-white text-black text-sm font-bold tracking-widest uppercase rounded-sm hover:-translate-y-0.5 transition-all overflow-hidden flex items-center justify-center min-w-[200px]"
             >
-              ENTER THE CORE
-              <span className="inline-block ml-2 group-hover:translate-x-1 transition-transform">→</span>
+              <div className="absolute inset-0 bg-zinc-200 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+              <span className="relative flex items-center gap-2">Initialize <Zap className="w-4 h-4" /></span>
             </Link>
-            <a
-              href="#features"
-              className="px-8 py-3 rounded border border-white/[0.04] text-zinc-600 text-sm font-mono tracking-wider hover:border-white/[0.08] hover:text-zinc-400 transition-all"
+            
+            <a 
+              href="#architecture"
+              className="px-8 py-4 bg-transparent text-white border border-white/20 hover:bg-white/5 text-sm font-mono tracking-widest uppercase rounded-sm hover:-translate-y-0.5 transition-all min-w-[200px]"
             >
-              LEARN MORE
+              Architecture
             </a>
           </div>
         </div>
-      </section>
 
-      {/* Terminal preview — Inception-style */}
-      <section className="relative py-16 px-6 z-10">
-        <div className="max-w-4xl mx-auto">
-          <div className={`relative rounded-lg overflow-hidden border border-white/[0.04] bg-black/80 backdrop-blur-sm transition-all duration-1000 delay-500 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div className="flex items-center gap-2 px-4 py-2.5 border-b border-white/[0.03] bg-white/[0.01]">
-              <div className="w-2.5 h-2.5 rounded-full bg-zinc-800 border border-zinc-700" />
-              <div className="w-2.5 h-2.5 rounded-full bg-zinc-800 border border-zinc-700" />
-              <div className="w-2.5 h-2.5 rounded-full bg-zinc-800 border border-zinc-700" />
-              <span className="ml-3 text-[10px] font-mono text-zinc-700 tracking-wider">navaclaw://ephemeral</span>
+        {/* Terminal Simulation */}
+        <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-3xl translate-y-1/2 transition-all duration-1000 delay-300 ${mounted ? 'opacity-100' : 'opacity-0'}`}>
+          <div className="rounded-t-xl bg-[#0b0b0f] border border-white/[0.08] border-b-0 shadow-2xl overflow-hidden p-4 relative backdrop-blur-xl">
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0b0b0f] to-transparent pointer-events-none z-10 h-12 bottom-0" />
+            <div className="flex items-center gap-2 mb-4 border-b border-white/[0.04] pb-3">
+              <div className="w-3 h-3 rounded-full bg-zinc-800" />
+              <div className="w-3 h-3 rounded-full bg-zinc-800" />
+              <div className="w-3 h-3 rounded-full bg-zinc-800" />
+              <span className="ml-2 text-[10px] font-mono text-zinc-600">navaclaw@agent-core ~ %</span>
             </div>
-            <div className="p-8 min-h-[280px] flex flex-col items-center justify-center font-mono">
-              <div className="text-center space-y-5 max-w-md">
-                <div className="text-emerald-500/40 text-xs tracking-[0.3em]">READY</div>
-                <div className="text-zinc-500 text-sm font-light">
-                  <span className="text-emerald-500/50">&gt;</span> Show me a dashboard for my fleet robots
-                </div>
-                <div className="w-full max-w-sm mx-auto">
-                  <div className="flex items-center bg-white/[0.02] border border-white/[0.04] rounded px-4 py-2.5">
-                    <span className="text-emerald-500/30 mr-2 text-xs">▸</span>
-                    <span className="text-zinc-700 text-xs">describe what you need…</span>
-                    <span className="ml-auto px-1.5 py-0.5 rounded text-[9px] font-mono text-zinc-700 border border-zinc-800/50">⌘K</span>
-                  </div>
-                </div>
-              </div>
+            <div className="font-mono text-sm leading-relaxed text-zinc-300">
+              <p className="text-zinc-500 mb-2">{`// 1. User declares intent via voice or text`}</p>
+              <p className="flex items-center gap-2 mb-4">
+                <span className="text-white">❯</span> 
+                <span className="text-zinc-300 font-semibold">&quot;Show me the latest trending AI news&quot;</span>
+              </p>
+              <p className="text-zinc-500 mb-2">{`// 2. Engine parses intent & spawns specialized UI widget`}</p>
+              <p className="text-white font-semibold">Generating &lt;TrendingIntelWidget /&gt; ...</p>
+              <p className="text-white opacity-50 text-xs mt-2">[✓] UI Materialized in 42ms</p>
             </div>
           </div>
         </div>
@@ -260,51 +185,51 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Features — clean grid */}
-      <section id="features" className="py-24 px-6 z-10 relative">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-2xl md:text-3xl font-mono font-light text-zinc-300 tracking-tight mb-3">
-              BEYOND WIMP
+      {/* Grid of Features Section */}
+      <section id="architecture" className="py-32 px-6 bg-[#0b0b0f] relative z-10 border-t border-white/[0.05]">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 className="text-3xl md:text-5xl font-mono tracking-tighter text-white mb-4">
+              NO STATIC VIEWS.
             </h2>
-            <p className="text-zinc-700 text-xs font-mono tracking-wider max-w-md mx-auto">
+            <p className="text-zinc-500 text-sm font-mono tracking-wider max-w-md mx-auto">
               WINDOWS, ICONS, MENUS, POINTERS — THE 40-YEAR PARADIGM. REPLACED.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-            <FeatureCard delay={0} icon="⚡" title="FluxFrame Engine" description="JSON→UI in milliseconds. Intent-driven workspace materialization. Auto-dissolve when done." />
-            <FeatureCard delay={100} icon="◉" title="Voice Control" description="Web Speech API with wake word. Speak your intent, watch the interface materialize." />
-            <FeatureCard delay={200} icon="◎" title="Gesture Recognition" description="Swipe, pinch, wave — motion sensors and touch mapped to actions." />
-            <FeatureCard delay={300} icon="◈" title="Agent Hierarchy" description="Orchestrator spawns sub-agents with isolated context. 23+ tools at disposal." />
-            <FeatureCard delay={400} icon="◇" title="Multi-Channel Comms" description="WhatsApp, Telegram, Slack, Discord, Email — unified under one agent." />
-            <FeatureCard delay={500} icon="◆" title="Secrets Management" description="Bidirectional masking: injected at execution, redacted in output." />
+            <FeatureCard delay={0} icon={<Zap className="w-5 h-5 text-white/70" />} title="FluxFrame Engine" description="JSON→UI in milliseconds. Intent-driven workspace materialization. Auto-dissolve when done." />
+            <FeatureCard delay={100} icon={<Mic className="w-5 h-5 text-white/70" />} title="Voice Control" description="Web Speech API with wake word. Speak your intent, watch the interface materialize." />
+            <FeatureCard delay={200} icon={<Fingerprint className="w-5 h-5 text-white/70" />} title="Gesture Recognition" description="Swipe, pinch, wave — motion sensors and touch mapped to actions." />
+            <FeatureCard delay={300} icon={<Layers className="w-5 h-5 text-white/70" />} title="Agent Hierarchy" description="Orchestrator spawns sub-agents with isolated context. 23+ tools at disposal." />
+            <FeatureCard delay={400} icon={<MessageSquare className="w-5 h-5 text-white/70" />} title="Multi-Channel Comms" description="WhatsApp, Telegram, Slack, Discord, Email — unified under one agent." />
+            <FeatureCard delay={500} icon={<Key className="w-5 h-5 text-white/70" />} title="Secrets Management" description="Bidirectional masking: injected at execution, redacted in output." />
           </div>
         </div>
       </section>
 
       {/* Architecture — minimal */}
-      <section className="py-24 px-6 border-t border-white/[0.03] z-10 relative">
+      <section className="py-24 px-6 border-t border-white/[0.03] bg-[#0b0b0f] relative z-10">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-2xl font-mono font-light text-zinc-300 tracking-tight mb-3">
             THREE SYSTEMS. ONE PLATFORM.
           </h2>
-          <p className="text-zinc-700 text-xs font-mono tracking-wider mb-12">
+          <p className="text-zinc-600 text-xs font-mono tracking-wider mb-12">
             UNIFIED AGENT ARCHITECTURE
           </p>
 
           <div className="grid grid-cols-3 gap-3 max-w-xl mx-auto">
             {[
-              { name: 'DATAMINER', items: ['Crawler', 'OSINT', 'Fleet VLA', 'Financial'], symbol: '▣' },
-              { name: 'AGENT CORE', items: ['Sub-Agents', 'Memory', 'Skills', 'Code Exec'], symbol: '▤' },
-              { name: 'OPENCLAW', items: ['WhatsApp', 'Telegram', 'Slack', 'Email'], symbol: '▥' },
-            ].map(({ name, items, symbol }) => (
+              { name: 'DATAMINER', items: ['Crawler', 'OSINT', 'Scouting', 'Financial'], icon: Database },
+              { name: 'AGENT CORE', items: ['Sub-Agents', 'Memory', 'Skills', 'Code Exec'], icon: Cpu },
+              { name: 'OPENCLAW', items: ['WhatsApp', 'Telegram', 'Slack', 'Email'], icon: Plug },
+            ].map(({ name, items, icon: Icon }) => (
               <div key={name} className="p-4 rounded-lg bg-white/[0.01] border border-white/[0.04]">
-                <div className="text-emerald-500/40 text-lg mb-2">{symbol}</div>
+                <div className="text-white/40 mb-3"><Icon className="w-6 h-6 mx-auto md:mx-0" /></div>
                 <h3 className="text-[10px] font-mono text-zinc-400 tracking-[0.15em] mb-3">{name}</h3>
                 <div className="space-y-1">
                   {items.map(item => (
-                    <div key={item} className="text-[10px] text-zinc-700 font-mono">{item}</div>
+                    <div key={item} className="text-[10px] text-zinc-600 font-mono">{item}</div>
                   ))}
                 </div>
               </div>
@@ -314,20 +239,19 @@ export default function Home() {
       </section>
 
       {/* Bottom CTA */}
-      <section className="py-24 px-6 z-10 relative">
+      <section className="py-24 px-6 bg-[#0b0b0f] relative z-10">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-2xl md:text-4xl font-mono font-light text-zinc-300 tracking-tight mb-3">
-            GO <span className="text-emerald-400/80">EPHEMERAL</span>
+            GO <span className="text-white font-bold">EPHEMERAL</span>
           </h2>
-          <p className="text-zinc-700 text-xs font-mono tracking-wider mb-8">
-            THE INTERFACE YOU NEED. NOTHING MORE.
+          <p className="text-zinc-500 mb-8 max-w-md mx-auto text-sm">
+            Stop adapting to software. Let the software adapt to you.
           </p>
-          <Link
+          <Link 
             href="/ephemeral"
-            className="inline-flex items-center gap-2 px-10 py-3 rounded border border-emerald-500/25 bg-emerald-500/[0.05] text-emerald-400 font-mono text-sm tracking-wider hover:bg-emerald-500/10 hover:border-emerald-500/35 transition-all duration-300"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black text-sm font-bold tracking-widest uppercase rounded-sm hover:-translate-y-0.5 transition-all shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(255,255,255,0.4)]"
           >
-            LAUNCH NAVACLAW-AI
-            <span className="text-emerald-500/40">▸</span>
+            Enter Workspace <Zap className="w-4 h-4" />
           </Link>
         </div>
       </section>

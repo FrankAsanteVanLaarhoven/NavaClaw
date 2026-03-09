@@ -55,7 +55,7 @@ export default function ApiDocsPage() {
       path: '/api/v1/neural-stealth/bypass',
       agent: 'Neural Stealth Engine',
       icon: Brain,
-      color: 'from-purple-500 to-pink-500',
+      color: 'from-emerald-500 to-emerald-600',
       example: {
         request: `{
   "target_url": "https://example.com",
@@ -173,7 +173,7 @@ export default function ApiDocsPage() {
       path: '/api/v1/universal-crawler/crawl',
       agent: 'Universal Crawler',
       icon: Globe,
-      color: 'from-indigo-500 to-purple-500',
+      color: 'from-emerald-500 to-emerald-500',
       example: {
         request: `{
   "urls": ["https://example1.com", "https://example2.com"],
@@ -200,7 +200,7 @@ export default function ApiDocsPage() {
       path: '/api/v1/security-framework/protect',
       agent: 'Self-Healing Security',
       icon: Shield,
-      color: 'from-red-500 to-pink-500',
+      color: 'from-red-500 to-emerald-600',
       example: {
         request: `{
   "threat_scan": true,
@@ -242,7 +242,7 @@ export default function ApiDocsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-[#0b0b0f] to-slate-900">
       {/* Header */}
       <header className="bg-black/20 backdrop-blur-md border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -259,7 +259,7 @@ export default function ApiDocsPage() {
                 <ExternalLink className="w-4 h-4" />
                 <span>OpenAPI Spec</span>
               </button>
-              <button className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:opacity-90 transition-opacity">
+              <button className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-lg hover:opacity-90 transition-opacity">
                 <Key className="w-4 h-4" />
                 <span>Get API Key</span>
               </button>
@@ -316,7 +316,7 @@ export default function ApiDocsPage() {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-lg p-6">
+              <div className="bg-gradient-to-r from-emerald-500/20 to-emerald-600/20 rounded-lg p-6">
                 <h3 className="text-xl font-semibold text-white mb-4">Base URL</h3>
                 <div className="flex items-center space-x-4">
                   <code className="flex-1 bg-black/30 text-green-400 p-3 rounded-lg font-mono text-sm">
@@ -487,7 +487,7 @@ export default function ApiDocsPage() {
                   </div>
 
                   <div className="flex items-center space-x-4">
-                    <button className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:opacity-90 transition-opacity">
+                    <button className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-lg hover:opacity-90 transition-opacity">
                       <Play className="w-4 h-4" />
                       <span>Try it out</span>
                     </button>

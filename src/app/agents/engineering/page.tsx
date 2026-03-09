@@ -57,7 +57,7 @@ const engineeringAgents = [
     name: 'DevOps Monitor',
     icon: Monitor,
     description: 'Infrastructure monitoring and alerts',
-    color: 'from-purple-500 to-pink-500',
+    color: 'from-emerald-500 to-emerald-600',
     features: [
       'Real-time infrastructure monitoring',
       'Automated alerting system',
@@ -91,7 +91,7 @@ const engineeringAgents = [
     name: 'Bug Tracker',
     icon: Bug,
     description: 'Intelligent bug detection and resolution',
-    color: 'from-red-500 to-pink-500',
+    color: 'from-red-500 to-emerald-600',
     features: [
       'Automated bug detection',
       'Issue classification and prioritization',
@@ -135,7 +135,7 @@ export default function EngineeringAgents() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-[#0b0b0f] to-slate-900">
       {/* Header */}
       <header className="relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
@@ -270,7 +270,7 @@ export default function EngineeringAgents() {
                         <button
                           onClick={() => handleRunAgent(agent.id)}
                           disabled={isRunning === agent.id}
-                          className="flex-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:from-blue-600 hover:to-purple-600 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                          className="flex-1 bg-gradient-to-r from-blue-500 to-emerald-500 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:from-blue-600 hover:to-emerald-600 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                           {isRunning === agent.id ? (
                             <div className="flex items-center justify-center">
@@ -315,7 +315,7 @@ export default function EngineeringAgents() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.7 }}
               >
-                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-blue-500/30 p-6">
+                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-500/20 to-emerald-500/20 backdrop-blur-sm border border-blue-500/30 p-6">
                   <h3 className="text-xl font-bold text-white mb-2">Run All Tests</h3>
                   <p className="text-zinc-300 mb-4">Execute comprehensive testing across all agents</p>
                   <button className="bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-blue-600 transition-all duration-300">

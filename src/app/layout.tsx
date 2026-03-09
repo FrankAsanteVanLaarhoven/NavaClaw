@@ -77,9 +77,9 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
       </head>
       <body
-        className={`${fontSans.variable} ${fontDisplay.variable} ${fontMono.variable} antialiased bg-black text-zinc-300`}
+       className={`${fontSans.variable} ${fontDisplay.variable} ${fontMono.variable} antialiased bg-black text-zinc-300`}
       >
-        <div className="relative min-h-screen selection:bg-emerald-500/10 selection:text-emerald-300">
+        <div className="relative min-h-screen selection:bg-white/10 selection:text-zinc-200">
           {/* Palantir-grade ambient glow — no purple, pure monochrome */}
           <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(800px_400px_at_50%_-200px,rgba(16,185,129,0.04),transparent_70%)]" />
           {children}

@@ -437,7 +437,7 @@ function MessageBubble({ message }: { message: Message }) {
 
 function WelcomeScreen({ onExample }: { onExample: (text: string) => void }) {
   const examples = [
-    { icon: '📊', text: 'Show me a dashboard for my fleet robots', category: 'Monitor' },
+    { icon: '📊', text: 'Show me the system health dashboard', category: 'Monitor' },
     { icon: '🔒', text: 'Run a security audit on the system', category: 'Analyze' },
     { icon: '💬', text: 'Open an agent chat session', category: 'Communicate' },
     { icon: '🌐', text: 'Start crawling example.com for data', category: 'Build' },
@@ -497,10 +497,17 @@ function getAgentResponse(input: string, frame: FluxFrame): string {
     communicate: `Communication channel opened. You have ${componentNames} available.`,
     create: `Creative workspace generated with ${componentNames}. Start building.`,
     explore: `Explorer view active. ${frame.components.length} tools ready: ${componentNames}.`,
+    agent_zero: `Agent Zero subsystems initialized. Displaying: ${componentNames}.`,
+    operations: `Operational command loaded. Accessing: ${componentNames}.`
   };
 
   // Match category from input keywords
   const lc = input.toLowerCase();
+  
+  // Specific Sidebar overrides
+  if (lc.includes('memories') || lc.includes('scheduler') || lc.includes('agent chat')) return responses.agent_zero;
+  if (lc.includes('crawler') || lc.includes('task') || lc.includes('integrations')) return responses.operations;
+  
   if (lc.includes('dashboard') || lc.includes('monitor') || lc.includes('fleet')) return responses.monitor;
   if (lc.includes('audit') || lc.includes('analyze') || lc.includes('security')) return responses.analyze;
   if (lc.includes('crawl') || lc.includes('build') || lc.includes('scrape')) return responses.build;

@@ -1,14 +1,15 @@
-import { Loader2, Sparkles } from 'lucide-react';
+import { Loader2, Zap } from 'lucide-react';
 
 export default function Loading() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-[#0b0b0f] to-slate-900 flex items-center justify-center">
       <div className="text-center">
-        <div className="relative">
-          <div className="w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-6 animate-pulse">
-            <Sparkles className="w-10 h-10 text-white" />
+        {/* Primary Spinner */}
+        <div className="relative w-24 h-24 flex items-center justify-center mb-8">
+          <div className="w-20 h-20 bg-gradient-to-r from-zinc-200 to-white rounded-full flex items-center justify-center mx-auto mb-6 animate-pulse">
+            <Zap className="w-10 h-10 text-black" />
           </div>
-          <div className="absolute inset-0 w-20 h-20 border-4 border-purple-500/30 rounded-full animate-spin"></div>
+          <div className="absolute inset-0 w-20 h-20 border-4 border-white/20 rounded-full animate-spin"></div>
         </div>
         
         <h2 className="text-2xl font-bold text-white mb-4">
@@ -19,9 +20,9 @@ export default function Loading() {
           Initializing specialized AI agents...
         </p>
         
-        <div className="flex items-center justify-center gap-2">
-          <Loader2 className="w-5 h-5 text-purple-400 animate-spin" />
-          <span className="text-purple-400 text-sm">Please wait</span>
+        <div className="flex items-center space-x-3 mb-2">
+          <Loader2 className="w-5 h-5 text-zinc-200 animate-spin" />
+          <span className="text-zinc-200 text-sm">Please wait</span>
         </div>
         
         <div className="mt-8 space-y-2">
@@ -30,15 +31,17 @@ export default function Loading() {
             <span>Neural Stealth Engine</span>
           </div>
           <div className="flex items-center gap-3 text-sm text-gray-400">
-            <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-            <span>Universal Crawler</span>
+            <span className="text-zinc-400">Loading System</span>
+            <div className="w-2 h-2 bg-zinc-200 rounded-full animate-pulse"></div>
+            <div className="w-2 h-2 bg-zinc-200 rounded-full animate-pulse delay-75"></div>
+            <div className="w-2 h-2 bg-zinc-200 rounded-full animate-pulse delay-150"></div>
           </div>
           <div className="flex items-center gap-3 text-sm text-gray-400">
-            <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
+            <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
             <span>AI Prompt Generator</span>
           </div>
         </div>
       </div>
     </div>
   );
-} 
+}

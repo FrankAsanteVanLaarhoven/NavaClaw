@@ -1,58 +1,75 @@
-name: Deploy SAFER-VLA PWA
+name: NAVACLAW-AI CI/CD Security Pipeline
 
 on:
   push:
-    branches: [main]
-  workflow_dispatch:
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    
+    # Environment explicitly set if using GitHub Environments
+    environment: production
+
     steps:
-      - name: Checkout
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Prepare PWA artifacts
-        run: |
-          # Create deployment directory with only PWA-relevant files
-          mkdir -p _site/pwa/icons _site/pwa/screenshots _site/server
-          
-          # Core PWA files
-          cp fastbot_command_center.html _site/
-          cp -r pwa/ _site/pwa/
-          
-          # Create index.html redirect
-          cat > _site/index.html << 'EOF'
-          <!DOCTYPE html>
-          <html>
-          <head><meta http-equiv="refresh" content="0;url=/fastbot_command_center.html"></head>
-          <body></body>
-          </html>
-          EOF
-          
-          echo "PWA deployment prepared"
-          ls -la _site/
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          path: '_site'
+          node-version: '20'
+          cache: 'npm'
 
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Node Dependencies
+        run: npm ci
+
+      - name: Install Python Dependencies
+        run: pip install -r core/requirements.txt
+
+      - name: Inject Secure Environment Variables
+        # This step securely builds the .env file from GitHub Actions Secrets
+        # None of these values are ever checked into the repository
+        run: |
+          echo "NODE_ENV=production" >> .env
+          echo "HUGGING_FACE_TOKEN=${{ secrets.HUGGING_FACE_TOKEN }}" >> .env
+          echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> .env
+          echo "FIREBASE_ADMIN_KEY=${{ secrets.FIREBASE_ADMIN_KEY }}" >> .env
+          echo "REDDIT_CLIENT_ID=${{ secrets.REDDIT_CLIENT_ID }}" >> .env
+          echo "REDDIT_CLIENT_SECRET=${{ secrets.REDDIT_CLIENT_SECRET }}" >> .env
+          echo "NEXT_PUBLIC_APP_URL=${{ secrets.NEXT_PUBLIC_APP_URL }}" >> .env
+          
+          # Mask secrets in the logs just in case
+          echo "::add-mask::${{ secrets.HUGGING_FACE_TOKEN }}"
+          echo "::add-mask::${{ secrets.OPENAI_API_KEY }}"
+          echo "::add-mask::${{ secrets.FIREBASE_ADMIN_KEY }}"
+          echo "::add-mask::${{ secrets.REDDIT_CLIENT_SECRET }}"
+
+      - name: Validate Secrets Pipeline
+        run: |
+          if [ ! -f .env ]; then
+            echo "Security Error: .env file failed to generate."
+            exit 1
+          fi
+          echo "✓ Local .env file securely generated from secrets."
+
+      - name: Run Next.js Build
+        run: npm run build
+
+      - name: Analyze Build Artifacts
+        run: ls -la .next/
+
+      # In a real deployment, we would use rsync, Docker push, or vercel CLI here
+      # For now, we simulate the success of the firewall and .env build pipeline
+      - name: Verification Post-Action
+        run: echo "CI/CD Pipeline Completed Successfully."

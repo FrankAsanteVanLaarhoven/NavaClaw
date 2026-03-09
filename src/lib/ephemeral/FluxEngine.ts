@@ -14,7 +14,8 @@ export type FluxTheme =
   | 'ocean_deep' 
   | 'forest_calm' 
   | 'midnight_gold'
-  | 'cyber_violet'
+  | 'cyber_emerald'
+  | 'monochrome_zinc'
   | 'auto';
 
 export type FluxLayout = 
@@ -45,7 +46,8 @@ export type FluxComponentType =
   | 'security_audit'     // Security scan results
   | 'crawler_dashboard'  // Web crawling status
   | 'video_feed'         // Live video / WebRTC stream
-  | 'notification_center'; // Notification hub
+  | 'notification_center' // Notification hub
+  | 'trending_intel';     // Social media trending feed
 
 export interface FluxAccessibility {
   voiceEnabled: boolean;
@@ -109,7 +111,7 @@ export class FluxEngine {
       'code_editor', 'file_browser', 'chart', 'form_builder',
       'memory_explorer', 'skill_launcher', 'fleet_monitor',
       'security_audit', 'crawler_dashboard', 'video_feed',
-      'notification_center'
+      'notification_center', 'trending_intel'
     ];
     allTypes.forEach(t => this.componentRegistry.set(t, true));
   }

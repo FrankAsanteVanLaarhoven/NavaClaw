@@ -1,0 +1,9 @@
+/Users/frankvanlaarhoven/Desktop/dataminerAI/navaclaw-engine/target/debug/deps/foldhash-19c6ac9060aad869.d: /Users/frankvanlaarhoven/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/foldhash-0.1.5/src/lib.rs /Users/frankvanlaarhoven/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/foldhash-0.1.5/src/fast.rs /Users/frankvanlaarhoven/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/foldhash-0.1.5/src/quality.rs /Users/frankvanlaarhoven/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/foldhash-0.1.5/src/seed.rs /Users/frankvanlaarhoven/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/foldhash-0.1.5/src/convenience.rs
+
+/Users/frankvanlaarhoven/Desktop/dataminerAI/navaclaw-engine/target/debug/deps/libfoldhash-19c6ac9060aad869.rmeta: /Users/frankvanlaarhoven/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/foldhash-0.1.5/src/lib.rs /Users/frankvanlaarhoven/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/foldhash-0.1.5/src/fast.rs /Users/frankvanlaarhoven/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/foldhash-0.1.5/src/quality.rs /Users/frankvanlaarhoven/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/foldhash-0.1.5/src/seed.rs /Users/frankvanlaarhoven/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/foldhash-0.1.5/src/convenience.rs
+
+/Users/frankvanlaarhoven/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/foldhash-0.1.5/src/lib.rs:
+/Users/frankvanlaarhoven/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/foldhash-0.1.5/src/fast.rs:
+/Users/frankvanlaarhoven/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/foldhash-0.1.5/src/quality.rs:
+/Users/frankvanlaarhoven/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/foldhash-0.1.5/src/seed.rs:
+/Users/frankvanlaarhoven/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/foldhash-0.1.5/src/convenience.rs:

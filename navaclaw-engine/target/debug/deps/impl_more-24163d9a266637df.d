@@ -1,0 +1,10 @@
+/Users/frankvanlaarhoven/Desktop/dataminerAI/navaclaw-engine/target/debug/deps/impl_more-24163d9a266637df.d: /Users/frankvanlaarhoven/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/impl-more-0.1.9/src/lib.rs /Users/frankvanlaarhoven/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/impl-more-0.1.9/src/as_ref.rs /Users/frankvanlaarhoven/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/impl-more-0.1.9/src/deref.rs /Users/frankvanlaarhoven/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/impl-more-0.1.9/src/display.rs /Users/frankvanlaarhoven/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/impl-more-0.1.9/src/error.rs /Users/frankvanlaarhoven/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/impl-more-0.1.9/src/from.rs
+
+/Users/frankvanlaarhoven/Desktop/dataminerAI/navaclaw-engine/target/debug/deps/libimpl_more-24163d9a266637df.rmeta: /Users/frankvanlaarhoven/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/impl-more-0.1.9/src/lib.rs /Users/frankvanlaarhoven/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/impl-more-0.1.9/src/as_ref.rs /Users/frankvanlaarhoven/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/impl-more-0.1.9/src/deref.rs /Users/frankvanlaarhoven/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/impl-more-0.1.9/src/display.rs /Users/frankvanlaarhoven/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/impl-more-0.1.9/src/error.rs /Users/frankvanlaarhoven/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/impl-more-0.1.9/src/from.rs
+
+/Users/frankvanlaarhoven/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/impl-more-0.1.9/src/lib.rs:
+/Users/frankvanlaarhoven/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/impl-more-0.1.9/src/as_ref.rs:
+/Users/frankvanlaarhoven/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/impl-more-0.1.9/src/deref.rs:
+/Users/frankvanlaarhoven/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/impl-more-0.1.9/src/display.rs:
+/Users/frankvanlaarhoven/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/impl-more-0.1.9/src/error.rs:
+/Users/frankvanlaarhoven/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/impl-more-0.1.9/src/from.rs:

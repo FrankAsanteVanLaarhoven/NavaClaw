@@ -415,6 +415,32 @@ class Agent:
         logger.info(f"{self.agent_name} spawned {sub.agent_name} for: {task_description[:80]}")
         return sub
     
+    def spawn_swarm_capability(self, capability_domain: str, task_description: str) -> "Agent":
+        """
+        [NAVACLAW-AI Exclusive]
+        Ethereally spawn a dynamic swarm agent tailored to a specific capability domain 
+        (e.g., 'penetration_tester', 'asil_compiler', 'data_miner_crawler') without rigid tree structures.
+        """
+        # Instantiate a detached swarm agent, linked to the context but not necessarily a direct hierarchical child
+        swarm_agent = Agent(
+            number=self.number + random.randint(100, 900), # Swarm IDs are randomized to prevent tree assumptions
+            config=self.config,
+            context=self.context,
+        )
+        swarm_agent.agent_name = f"SwarmAgent-{capability_domain.capitalize()}-{swarm_agent.number}"
+        
+        # Inject dynamic system prompt based on domain expertise
+        domain_prompt = f"You are an ethereal Swarm Agent specializing in {capability_domain}. " \
+                        f"You operate dynamically outside the rigid Agent Zero hierarchy to fulfill specialized tasks."
+        swarm_agent.history.insert(0, {"role": "system", "content": domain_prompt})
+        
+        # Log the dynamic instantiation
+        logger.info(f"{self.agent_name} dynamically invoked Swarm Capability '{capability_domain}' -> {swarm_agent.agent_name}")
+        
+        # Assign the task
+        swarm_agent.add_user_message(UserMessage(message=task_description))
+        return swarm_agent
+    
     # ── History Management ──
     
     def add_user_message(self, msg: UserMessage) -> None:

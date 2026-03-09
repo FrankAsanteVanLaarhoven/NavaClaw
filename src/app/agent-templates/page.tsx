@@ -180,12 +180,12 @@ export default function AgentTemplatesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-[#0b0b0f] to-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32">
         <div className="text-center mb-8">
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
             🤖 AI Agent Templates
-            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
               {" "}Hub
             </span>
           </h1>
@@ -195,7 +195,7 @@ export default function AgentTemplatesPage() {
         </div>
 
         {/* Agent Selection */}
-        <GlowCard className="p-8 mb-8" customSize glowColor="purple">
+        <GlowCard className="p-8 mb-8" customSize glowColor="emerald">
           <h2 className="text-3xl font-bold text-white mb-6">🤖 Select AI Agent</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {agents.map((agent) => (
@@ -207,7 +207,7 @@ export default function AgentTemplatesPage() {
                     : 'text-white hover:bg-white/10'
                 }`}
                 customSize
-                glowColor={selectedAgent === agent.id ? 'blue' : 'purple'}
+                glowColor={selectedAgent === agent.id ? 'blue' : 'emerald'}
                 onClick={() => setSelectedAgent(agent.id)}
               >
                 <div className="text-3xl mb-3">{agent.icon}</div>
@@ -244,7 +244,7 @@ export default function AgentTemplatesPage() {
                   <div className="space-y-4">
                     {Object.entries(templates[selectedAgent].industry_specific).map(([industry, features]) => (
                       <div key={industry} className="bg-white/5 rounded-lg p-4">
-                        <h4 className="text-lg font-semibold text-purple-400 mb-2 capitalize">{industry}</h4>
+                        <h4 className="text-lg font-semibold text-emerald-400 mb-2 capitalize">{industry}</h4>
                         <div className="space-y-1">
                           {features.map((feature, index) => (
                             <div key={index} className="text-sm text-gray-300">• {feature}</div>
@@ -278,7 +278,7 @@ export default function AgentTemplatesPage() {
                       )}
                       {study.impact && (
                         <div className="text-center">
-                          <div className="text-2xl font-bold text-purple-400">{study.impact}</div>
+                          <div className="text-2xl font-bold text-emerald-400">{study.impact}</div>
                           <div className="text-sm text-gray-400">Impact</div>
                         </div>
                       )}
@@ -295,7 +295,7 @@ export default function AgentTemplatesPage() {
             </GlowCard>
 
             {/* Request Templates */}
-            <GlowCard className="p-8" customSize glowColor="purple">
+            <GlowCard className="p-8" customSize glowColor="emerald">
               <h3 className="text-3xl font-bold text-white mb-6">📝 Request Templates</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                 {templates[selectedAgent].request_templates.map((template, index) => (
@@ -353,7 +353,7 @@ export default function AgentTemplatesPage() {
                           </div>
                           <div>
                             <span className="text-gray-400">Agents Used:</span>
-                            <div className="text-purple-400">{response.agents_used.join(', ')}</div>
+                            <div className="text-emerald-400">{response.agents_used.join(', ')}</div>
                           </div>
                         </div>
                         
@@ -384,7 +384,7 @@ export default function AgentTemplatesPage() {
             </Link>
             <Link
               href="/"
-              className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 text-center"
+              className="bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-[#0f1a14] text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 text-center"
             >
               🏠 Main Intelligence Hub
             </Link>
@@ -399,7 +399,7 @@ export default function AgentTemplatesPage() {
 
         {/* Back to Main */}
         <div className="text-center">
-          <Link href="/" className="inline-block bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors">
+          <Link href="/" className="inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors">
             ← Back to Main Hub
           </Link>
         </div>

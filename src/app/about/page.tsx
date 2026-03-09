@@ -28,7 +28,7 @@ export default function AboutPage() {
       icon: Brain,
       title: 'Innovation',
       description: 'Pushing the boundaries of AI technology with cutting-edge research and development',
-      color: 'from-purple-500 to-pink-500'
+      color: 'from-emerald-500 to-emerald-600'
     },
     {
       icon: Shield,
@@ -105,7 +105,7 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-[#0b0b0f] to-slate-900">
       {/* Header */}
       <header className="bg-black/20 backdrop-blur-md border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -114,7 +114,7 @@ export default function AboutPage() {
               <h1 className="text-2xl font-bold text-white">About AuraAI</h1>
             </div>
             <div className="flex items-center space-x-4">
-              <button className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:opacity-90 transition-opacity">
+              <button className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-lg hover:opacity-90 transition-opacity">
                 <span>Join Our Team</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
@@ -133,7 +133,7 @@ export default function AboutPage() {
         >
           <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
             Building the Future of
-            <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-emerald-400 to-emerald-400 bg-clip-text text-transparent">
               {" "}AI Development
             </span>
           </h2>
@@ -186,9 +186,9 @@ export default function AboutPage() {
                 </p>
               </div>
             </div>
-            <div className="bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-2xl p-8">
+            <div className="bg-gradient-to-br from-emerald-500/20 to-emerald-600/20 rounded-2xl p-8">
               <div className="text-center">
-                <Sparkles className="w-16 h-16 text-purple-400 mx-auto mb-4" />
+                <Sparkles className="w-16 h-16 text-emerald-400 mx-auto mb-4" />
                 <h4 className="text-2xl font-bold text-white mb-4">Our Mission</h4>
                 <p className="text-gray-300 mb-6">
                   To democratize advanced AI capabilities and empower developers to build 
@@ -253,11 +253,11 @@ export default function AboutPage() {
                 transition={{ duration: 0.8, delay: 0.7 + index * 0.1 }}
                 className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 text-center hover:bg-white/10 transition-all duration-300"
               >
-                <div className="w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <div className="w-20 h-20 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-full mx-auto mb-4 flex items-center justify-center">
                   <Users className="w-10 h-10 text-white" />
                 </div>
                 <h4 className="text-xl font-semibold text-white mb-2">{member.name}</h4>
-                <p className="text-purple-400 font-medium mb-3">{member.role}</p>
+                <p className="text-emerald-400 font-medium mb-3">{member.role}</p>
                 <p className="text-gray-300 text-sm mb-4">{member.bio}</p>
                 <div className="space-y-2">
                   {member.expertise.map((skill, skillIndex) => (
@@ -281,7 +281,7 @@ export default function AboutPage() {
         >
           <h3 className="text-3xl font-bold text-white text-center mb-12">Our Journey</h3>
           <div className="relative">
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-purple-500 to-pink-500"></div>
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-emerald-500 to-emerald-600"></div>
             <div className="space-y-8">
               {milestones.map((milestone, index) => (
                 <motion.div
@@ -293,12 +293,12 @@ export default function AboutPage() {
                 >
                   <div className="w-1/2 flex justify-center">
                     <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 max-w-sm">
-                      <div className="text-2xl font-bold text-purple-400 mb-2">{milestone.year}</div>
+                      <div className="text-2xl font-bold text-emerald-400 mb-2">{milestone.year}</div>
                       <h4 className="text-lg font-semibold text-white mb-2">{milestone.title}</h4>
                       <p className="text-gray-300 text-sm">{milestone.description}</p>
                     </div>
                   </div>
-                  <div className="w-4 h-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full border-4 border-slate-900"></div>
+                  <div className="w-4 h-4 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-full border-4 border-slate-900"></div>
                   <div className="w-1/2"></div>
                 </motion.div>
               ))}
@@ -313,7 +313,7 @@ export default function AboutPage() {
           transition={{ duration: 0.8, delay: 1.0 }}
           className="text-center"
         >
-          <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-2xl p-12">
+          <div className="bg-gradient-to-r from-emerald-500/20 to-emerald-600/20 rounded-2xl p-12">
             <h3 className="text-3xl font-bold text-white mb-4">
               Join Us in Building the Future
             </h3>
@@ -322,7 +322,7 @@ export default function AboutPage() {
               seeking to transform your business with AI, we're here to help.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:opacity-90 transition-opacity flex items-center justify-center space-x-2">
+              <button className="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:opacity-90 transition-opacity flex items-center justify-center space-x-2">
                 <Rocket className="w-5 h-5" />
                 <span>Start Building</span>
               </button>

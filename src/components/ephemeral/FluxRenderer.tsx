@@ -8,6 +8,9 @@
  */
 
 import React, { useEffect, useState, useRef, useCallback, useMemo } from 'react';
+import { FileText, Grid, Lightbulb, Image as ImageIcon, Volume2, Zap, Terminal, Bot, Code, Folder, LineChart, FormInput, Brain, Rocket, Shield, Bug, Video, Bell, Wrench, CheckCircle, Globe, Activity, Search, TrendingUp } from 'lucide-react';
+import { DraggableWindow } from './DraggableWindow';
+import { TrendingIntelWidget } from './TrendingIntelWidget';
 import {
   FluxFrame,
   FluxComponent,
@@ -21,60 +24,60 @@ import {
 
 const THEME_PALETTES: Record<FluxTheme, { bg: string; card: string; accent: string; text: string; border: string; glow: string }> = {
   analysis_red: {
-    bg: 'from-[#0a0a12] via-[#1a0a0a] to-[#0a0a12]',
-    card: 'bg-[#141420]/90 border-red-500/20',
-    accent: 'text-red-400',
-    text: 'text-zinc-100',
-    border: 'border-red-500/30',
-    glow: 'shadow-[0_0_40px_rgba(239,68,68,0.15)]',
-  },
-  studio_neon: {
-    bg: 'from-[#0a0a12] via-[#0a0e1a] to-[#0a0a12]',
-    card: 'bg-[#0f1729]/90 border-cyan-500/20',
-    accent: 'text-cyan-400',
-    text: 'text-zinc-100',
-    border: 'border-cyan-500/30',
-    glow: 'shadow-[0_0_40px_rgba(6,182,212,0.15)]',
-  },
-  ocean_deep: {
-    bg: 'from-[#040810] via-[#061020] to-[#040810]',
-    card: 'bg-[#0a1628]/90 border-blue-500/20',
-    accent: 'text-blue-400',
-    text: 'text-zinc-100',
-    border: 'border-blue-500/30',
-    glow: 'shadow-[0_0_40px_rgba(59,130,246,0.12)]',
-  },
-  forest_calm: {
-    bg: 'from-[#060a08] via-[#0a1210] to-[#060a08]',
-    card: 'bg-[#0c1a14]/90 border-emerald-500/20',
+    bg: 'from-[#0b0b0f] via-[#0b0f0d] to-[#0b0b0f]',
+    card: 'bg-[#0d1210]/90 border-emerald-500/15',
     accent: 'text-emerald-400',
     text: 'text-zinc-100',
-    border: 'border-emerald-500/30',
-    glow: 'shadow-[0_0_40px_rgba(52,211,153,0.12)]',
+    border: 'border-emerald-500/20',
+    glow: 'shadow-[0_0_40px_rgba(16,185,129,0.08)]',
+  },
+  studio_neon: {
+    bg: 'from-[#0b0b0f] via-[#0a0f0d] to-[#0b0b0f]',
+    card: 'bg-[#0c1310]/90 border-emerald-500/15',
+    accent: 'text-emerald-400',
+    text: 'text-zinc-100',
+    border: 'border-emerald-500/20',
+    glow: 'shadow-[0_0_40px_rgba(16,185,129,0.1)]',
+  },
+  ocean_deep: {
+    bg: 'from-[#0b0b0f] via-[#0a0e0c] to-[#0b0b0f]',
+    card: 'bg-[#0b1210]/90 border-emerald-500/15',
+    accent: 'text-emerald-400',
+    text: 'text-zinc-100',
+    border: 'border-emerald-500/20',
+    glow: 'shadow-[0_0_40px_rgba(16,185,129,0.08)]',
+  },
+  forest_calm: {
+    bg: 'from-[#0b0b0f] via-[#0a100e] to-[#0b0b0f]',
+    card: 'bg-[#0c1410]/90 border-emerald-500/20',
+    accent: 'text-emerald-400',
+    text: 'text-zinc-100',
+    border: 'border-emerald-500/25',
+    glow: 'shadow-[0_0_40px_rgba(16,185,129,0.12)]',
   },
   midnight_gold: {
-    bg: 'from-[#0a0a06] via-[#14120a] to-[#0a0a06]',
-    card: 'bg-[#1a1708]/90 border-amber-500/20',
-    accent: 'text-amber-400',
+    bg: 'from-[#0b0b0f] via-[#0b0f0d] to-[#0b0b0f]',
+    card: 'bg-[#0d1310]/90 border-emerald-500/15',
+    accent: 'text-emerald-400',
     text: 'text-zinc-100',
-    border: 'border-amber-500/30',
-    glow: 'shadow-[0_0_40px_rgba(245,158,11,0.15)]',
+    border: 'border-emerald-500/20',
+    glow: 'shadow-[0_0_40px_rgba(16,185,129,0.1)]',
   },
-  cyber_violet: {
-    bg: 'from-[#08060e] via-[#120a1e] to-[#08060e]',
-    card: 'bg-[#1a1030]/90 border-violet-500/20',
-    accent: 'text-violet-400',
+  cyber_emerald: {
+    bg: 'from-[#0b0b0f] via-[#0a110e] to-[#0b0b0f]',
+    card: 'bg-[#0c1510]/90 border-emerald-500/20',
+    accent: 'text-emerald-400',
     text: 'text-zinc-100',
-    border: 'border-violet-500/30',
-    glow: 'shadow-[0_0_40px_rgba(139,92,246,0.15)]',
+    border: 'border-emerald-500/25',
+    glow: 'shadow-[0_0_40px_rgba(16,185,129,0.12)]',
   },
   auto: {
-    bg: 'from-[#0b0b0f] via-[#0e0e16] to-[#0b0b0f]',
-    card: 'bg-[#141420]/90 border-zinc-700/30',
-    accent: 'text-indigo-400',
+    bg: 'from-[#0b0b0f] via-[#0b0d0c] to-[#0b0b0f]',
+    card: 'bg-[#0d1210]/90 border-emerald-500/10',
+    accent: 'text-emerald-400',
     text: 'text-zinc-100',
-    border: 'border-zinc-700/40',
-    glow: 'shadow-[0_0_30px_rgba(99,102,241,0.1)]',
+    border: 'border-emerald-500/15',
+    glow: 'shadow-[0_0_30px_rgba(16,185,129,0.06)]',
   },
 };
 
@@ -114,43 +117,46 @@ const FluxComponentCard: React.FC<ComponentProps> = ({ component, theme }) => {
     : {};
 
   // Icon mapping
-  const icons: Record<string, string> = {
-    smart_viewer: '📄',
-    data_grid: '📊',
-    insight_card: '💡',
-    visual_gallery: '🖼️',
-    audio_brief: '🔊',
-    quick_action: '⚡',
-    terminal: '💻',
-    agent_chat: '🤖',
-    code_editor: '📝',
-    file_browser: '📁',
-    chart: '📈',
-    form_builder: '📋',
-    memory_explorer: '🧠',
-    skill_launcher: '🚀',
-    fleet_monitor: '🤖',
-    security_audit: '🛡️',
-    crawler_dashboard: '🕷️',
-    video_feed: '📹',
-    notification_center: '🔔',
+  const icons: Record<string, React.ElementType> = {
+    smart_viewer: FileText,
+    data_grid: Grid,
+    insight_card: Lightbulb,
+    visual_gallery: ImageIcon,
+    audio_brief: Volume2,
+    quick_action: Zap,
+    terminal: Terminal,
+    agent_chat: Bot,
+    code_editor: Code,
+    file_browser: Folder,
+    chart: LineChart,
+    form_builder: FormInput,
+    memory_explorer: Brain,
+    skill_launcher: Rocket,
+    fleet_monitor: Bot,
+    security_audit: Shield,
+    crawler_dashboard: Bug,
+    video_feed: Video,
+    notification_center: Bell,
+    trending_intel: TrendingUp,
   };
+  const Icon = icons[component.type] || Wrench;
 
   return (
-    <div
-      className={`
-        ${theme.card} ${theme.glow} ${animClass}
-        rounded-2xl border backdrop-blur-xl p-6
-        transition-all duration-300 hover:scale-[1.02]
-        hover:border-opacity-60 cursor-default
-        opacity-0
-      `}
-      style={spanStyle}
-      id={`flux-component-${component.id}`}
-    >
-      {/* Component Header */}
-      <div className="flex items-center gap-3 mb-4">
-        <span className="text-2xl">{icons[component.type] || '🔧'}</span>
+    <DraggableWindow id={component.id}>
+      <div
+        className={`
+          ${theme.card} ${theme.glow} ${animClass}
+          rounded-2xl border backdrop-blur-xl p-6
+          transition-all duration-300 hover:scale-[1.02]
+          hover:border-opacity-60 cursor-default
+          opacity-0 h-full
+        `}
+        style={spanStyle}
+        id={`flux-component-${component.id}`}
+      >
+        {/* Component Header */}
+        <div className="flex items-center gap-3 mb-4">
+          <Icon className="w-6 h-6 text-emerald-400" />
         <div>
           <h3 className={`font-semibold ${theme.accent} text-sm uppercase tracking-wider`}>
             {component.title || component.type.replace(/_/g, ' ')}
@@ -200,19 +206,23 @@ const FluxComponentCard: React.FC<ComponentProps> = ({ component, theme }) => {
         {component.type === 'skill_launcher' && (
           <SkillLauncherComponent config={component.config} theme={theme} />
         )}
+        {component.type === 'trending_intel' && (
+          <TrendingIntelWidget config={component.config} theme={theme} />
+        )}
         {/* Fallback */}
         {!['agent_chat', 'terminal', 'insight_card', 'chart', 'quick_action', 'data_grid',
           'fleet_monitor', 'security_audit', 'memory_explorer', 'crawler_dashboard',
-          'code_editor', 'skill_launcher'].includes(component.type) && (
+          'code_editor', 'skill_launcher', 'trending_intel'].includes(component.type) && (
           <div className="text-zinc-400 text-sm flex items-center justify-center h-full">
             <div className="text-center">
-              <span className="text-4xl block mb-2">{icons[component.type] || '🔧'}</span>
+              <Icon className="w-10 h-10 mx-auto mb-2 text-emerald-500/50" />
               <p className="opacity-60">Component ready</p>
             </div>
           </div>
         )}
       </div>
-    </div>
+      </div>
+    </DraggableWindow>
   );
 };
 
@@ -244,7 +254,7 @@ const AgentChatComponent: React.FC<{ config: Record<string, unknown>; theme: typ
           <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
             <div className={`max-w-[80%] rounded-xl px-4 py-2 text-sm ${
               msg.role === 'user'
-                ? `bg-indigo-600/30 ${theme.text}`
+                ? `bg-emerald-600/30 ${theme.text}`
                 : 'bg-zinc-800/60 text-zinc-300'
             }`}>
               {msg.content}
@@ -259,12 +269,12 @@ const AgentChatComponent: React.FC<{ config: Record<string, unknown>; theme: typ
           onChange={e => setInput(e.target.value)}
           onKeyDown={e => e.key === 'Enter' && sendMessage()}
           placeholder="Type or speak..."
-          className="flex-1 bg-zinc-900/60 border border-zinc-700/50 rounded-xl px-4 py-2 text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-indigo-500/50"
+          className="flex-1 bg-zinc-900/60 border border-zinc-700/50 rounded-xl px-4 py-2 text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-emerald-500/50"
           id="flux-agent-chat-input"
         />
         <button
           onClick={sendMessage}
-          className="px-4 py-2 bg-indigo-600/80 hover:bg-indigo-600 rounded-xl text-sm font-medium transition-colors"
+          className="px-4 py-2 bg-emerald-600/80 hover:bg-emerald-600 rounded-xl text-sm font-medium transition-colors"
           id="flux-agent-chat-send"
         >
           Send
@@ -440,7 +450,7 @@ const FleetMonitorComponent: React.FC<{ config: Record<string, unknown>; theme: 
       { name: 'G1-Gamma', battery: 95, status: 'patrolling', zone: 'Corridor-B' },
     ].map((bot, i) => (
       <div key={i} className="flex items-center gap-3 py-2">
-        <div className="text-xl">🤖</div>
+        <Bot className="w-6 h-6 text-emerald-500" />
         <div className="flex-1">
           <div className="flex justify-between">
             <span className={`font-medium ${theme.text} text-sm`}>{bot.name}</span>
@@ -467,14 +477,14 @@ const FleetMonitorComponent: React.FC<{ config: Record<string, unknown>; theme: 
 const SecurityAuditComponent: React.FC<{ config: Record<string, unknown>; theme: typeof THEME_PALETTES['auto'] }> = ({ theme }) => (
   <div className="space-y-2">
     {[
-      { check: 'FIPS 140-2 Level 4', status: 'pass', icon: '✅' },
-      { check: 'Zero-trust segmentation', status: 'pass', icon: '✅' },
-      { check: 'Quantum-safe crypto', status: 'pass', icon: '✅' },
-      { check: 'Docker sandbox integrity', status: 'pass', icon: '✅' },
-      { check: 'Secrets exposure scan', status: 'pass', icon: '✅' },
+      { check: 'FIPS 140-2 Level 4', status: 'pass' },
+      { check: 'Zero-trust segmentation', status: 'pass' },
+      { check: 'Quantum-safe crypto', status: 'pass' },
+      { check: 'Docker sandbox integrity', status: 'pass' },
+      { check: 'Secrets exposure scan', status: 'pass' },
     ].map((item, i) => (
       <div key={i} className="flex items-center gap-3 py-1.5 text-sm">
-        <span>{item.icon}</span>
+        <CheckCircle className="w-4 h-4 text-emerald-500" />
         <span className={theme.text}>{item.check}</span>
         <span className="ml-auto text-emerald-400 text-xs font-medium uppercase">{item.status}</span>
       </div>
@@ -487,7 +497,7 @@ const MemoryExplorerComponent: React.FC<{ config: Record<string, unknown>; theme
     <input
       type="text"
       placeholder="Search memories..."
-      className="w-full bg-zinc-900/60 border border-zinc-700/50 rounded-lg px-3 py-2 text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-violet-500/50"
+      className="w-full bg-zinc-900/60 border border-zinc-700/50 rounded-lg px-3 py-2 text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-emerald-500/50"
       id="flux-memory-search"
     />
     {[
@@ -496,10 +506,10 @@ const MemoryExplorerComponent: React.FC<{ config: Record<string, unknown>; theme
       { key: 'Fleet deployment #12', similarity: 0.82, age: '3d ago' },
     ].map((mem, i) => (
       <div key={i} className="flex items-center gap-2 py-1.5 text-sm border-b border-zinc-800/30 last:border-0">
-        <span className="text-violet-400">🧠</span>
+        <Brain className="w-4 h-4 text-emerald-400" />
         <span className={theme.text}>{mem.key}</span>
         <span className="ml-auto text-xs text-zinc-500">{mem.age}</span>
-        <span className="text-xs text-violet-400">{Math.round(mem.similarity * 100)}%</span>
+        <span className="text-xs text-emerald-400">{Math.round(mem.similarity * 100)}%</span>
       </div>
     ))}
   </div>
@@ -556,13 +566,13 @@ const CodeEditorComponent: React.FC<{ config: Record<string, unknown>; theme: ty
 const SkillLauncherComponent: React.FC<{ config: Record<string, unknown>; theme: typeof THEME_PALETTES['auto'] }> = ({ theme }) => (
   <div className="space-y-2">
     {[
-      { name: 'WordPress Manager', icon: '🌐', installed: true },
-      { name: 'GitHub Version Scan', icon: '🔍', installed: true },
-      { name: 'Image Generator', icon: '🎨', installed: true },
-      { name: 'System Health Monitor', icon: '💊', installed: false },
+      { name: 'WordPress Manager', icon: Globe, installed: true },
+      { name: 'GitHub Version Scan', icon: Search, installed: true },
+      { name: 'Image Generator', icon: ImageIcon, installed: true },
+      { name: 'System Health Monitor', icon: Activity, installed: false },
     ].map((skill, i) => (
       <div key={i} className="flex items-center gap-3 py-2 border-b border-zinc-800/30 last:border-0">
-        <span className="text-xl">{skill.icon}</span>
+        <skill.icon className="w-5 h-5 text-zinc-400" />
         <span className={`${theme.text} text-sm flex-1`}>{skill.name}</span>
         <button className={`px-3 py-1 rounded-lg text-xs font-medium ${
           skill.installed

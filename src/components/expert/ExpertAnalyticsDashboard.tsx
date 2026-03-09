@@ -54,7 +54,7 @@ export const ExpertAnalyticsDashboard: React.FC = () => {
       icon: Shield,
       value: '99.9%',
       subtitle: 'Security Score',
-      color: 'text-purple-400'
+      color: 'text-emerald-400'
     },
     {
       id: 'cost',
@@ -138,7 +138,7 @@ export const ExpertAnalyticsDashboard: React.FC = () => {
           {/* Security Metrics */}
           <div>
             <h4 className="text-lg font-semibold text-white mb-4 flex items-center">
-              <Shield className="h-5 w-5 mr-2 text-purple-400" />
+              <Shield className="h-5 w-5 mr-2 text-emerald-400" />
               Security Metrics
             </h4>
             <div className="space-y-3">
@@ -164,7 +164,7 @@ export const ExpertAnalyticsDashboard: React.FC = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6 }}
-        className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 rounded-xl p-6 border border-blue-500/20"
+        className="bg-gradient-to-r from-blue-900/20 to-[#0b0b0f]/20 rounded-xl p-6 border border-blue-500/20"
       >
         <h3 className="text-xl font-semibold text-white mb-6">Competitive Advantages</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -174,7 +174,7 @@ export const ExpertAnalyticsDashboard: React.FC = () => {
               <span className="text-white">900% more sophisticated than Lindy.ai</span>
             </div>
             <div className="flex items-center space-x-3">
-              <Shield className="h-5 w-5 text-purple-400" />
+              <Shield className="h-5 w-5 text-emerald-400" />
               <span className="text-white">Military-grade vs consumer security</span>
             </div>
             <div className="flex items-center space-x-3">
@@ -188,7 +188,7 @@ export const ExpertAnalyticsDashboard: React.FC = () => {
               <span className="text-white">Direct LinkedIn API access</span>
             </div>
             <div className="flex items-center space-x-3">
-              <Database className="h-5 w-5 text-indigo-400" />
+              <Database className="h-5 w-5 text-emerald-400" />
               <span className="text-white">Enterprise + Government ready</span>
             </div>
             <div className="flex items-center space-x-3">

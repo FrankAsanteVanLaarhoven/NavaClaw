@@ -266,7 +266,7 @@ export default function SportsBettingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-[#0b0b0f] to-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32">
         <div className="text-center mb-8">
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
@@ -333,7 +333,7 @@ export default function SportsBettingPage() {
         )}
 
         {/* Custom Query */}
-        <GlowCard className="p-8 mb-8" customSize glowColor="purple">
+        <GlowCard className="p-8 mb-8" customSize glowColor="emerald">
           <h2 className="text-3xl font-bold text-white mb-6">🔍 Custom Analysis Request</h2>
           <div className="flex gap-4">
             <input
@@ -432,7 +432,7 @@ export default function SportsBettingPage() {
                   <div className="text-yellow-400">
                     <strong>Expected Value:</strong> {(bettingAnalysis.expected_value * 100).toFixed(2)}%
                   </div>
-                  <div className="text-purple-400">
+                  <div className="text-emerald-400">
                     <strong>Risk Level:</strong> {bettingAnalysis.risk_level}
                   </div>
                   <div className="text-white">
@@ -477,7 +477,7 @@ export default function SportsBettingPage() {
                     <div className="text-white">{combo.description}</div>
                     <div className="text-blue-400">Odds: {combo.odds}</div>
                     <div className="text-yellow-400">Confidence: {(combo.confidence * 100).toFixed(1)}%</div>
-                    <div className="text-purple-400">Stake: {combo.stake_recommendation}</div>
+                    <div className="text-emerald-400">Stake: {combo.stake_recommendation}</div>
                   </div>
                 ))}
               </div>
@@ -518,7 +518,7 @@ export default function SportsBettingPage() {
 
         {/* Back to Main */}
         <div className="text-center">
-          <Link href="/" className="inline-block bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors">
+          <Link href="/" className="inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors">
             ← Back to Main Hub
           </Link>
         </div>

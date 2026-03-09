@@ -21,7 +21,7 @@ export const ExpertComponent: React.FC<ExpertComponentProps> = ({
   const getVariantStyles = () => {
     switch (variant) {
       case 'expert':
-        return 'bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 border border-blue-500/20';
+        return 'bg-gradient-to-br from-blue-900 via-[#0b0b0f] to-emerald-900 border border-blue-500/20';
       case 'enterprise':
         return 'bg-gradient-to-br from-slate-800 via-gray-800 to-slate-900 border border-slate-600/20';
       case 'premium':

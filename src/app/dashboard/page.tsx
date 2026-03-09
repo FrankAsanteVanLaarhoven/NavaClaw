@@ -54,7 +54,7 @@ export default function DashboardPage() {
       uptime: '2d 14h 32m',
       lastActivity: '2 minutes ago',
       icon: Brain,
-      color: 'from-purple-500 to-pink-500'
+      color: 'from-emerald-500 to-emerald-600'
     },
     {
       id: 'quantum-tls',
@@ -98,7 +98,7 @@ export default function DashboardPage() {
       uptime: '5d 12h 3m',
       lastActivity: '1 hour ago',
       icon: Globe,
-      color: 'from-indigo-500 to-purple-500'
+      color: 'from-emerald-500 to-emerald-500'
     },
     {
       id: 'security-framework',
@@ -109,7 +109,7 @@ export default function DashboardPage() {
       uptime: '4d 18h 55m',
       lastActivity: '10 minutes ago',
       icon: Shield,
-      color: 'from-red-500 to-pink-500'
+      color: 'from-red-500 to-emerald-600'
     }
   ]);
 
@@ -165,7 +165,7 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-[#0b0b0f] to-slate-900">
       {/* Header */}
       <header className="bg-black/20 backdrop-blur-md border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -217,9 +217,9 @@ export default function DashboardPage() {
             <div className="text-sm text-gray-400">Average CPU Usage</div>
           </GlowCard>
 
-          <GlowCard className="p-6" customSize glowColor="purple">
+          <GlowCard className="p-6" customSize glowColor="emerald">
             <div className="flex items-center justify-between mb-4">
-              <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-lg flex items-center justify-center">
                 <HardDrive className="w-5 h-5 text-white" />
               </div>
               <TrendingUp className="w-5 h-5 text-green-400" />
@@ -299,7 +299,7 @@ export default function DashboardPage() {
                     <div className="flex items-center space-x-2">
                       <div className="w-16 bg-gray-700 rounded-full h-2">
                         <div 
-                          className="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full transition-all duration-300"
+                          className="bg-gradient-to-r from-emerald-500 to-emerald-600 h-2 rounded-full transition-all duration-300"
                           style={{ width: `${agent.memory}%` }}
                         ></div>
                       </div>
@@ -354,7 +354,7 @@ export default function DashboardPage() {
             </div>
           </GlowCard>
 
-          <GlowCard className="p-6" customSize glowColor="purple">
+          <GlowCard className="p-6" customSize glowColor="emerald">
             <h3 className="text-xl font-semibold text-white mb-4">System Performance</h3>
             <div className="space-y-6">
               <div>
@@ -373,7 +373,7 @@ export default function DashboardPage() {
                   <span className="text-sm text-white">{systemMetrics.threatsBlocked}</span>
                 </div>
                 <div className="w-full bg-gray-700 rounded-full h-2">
-                  <div className="bg-gradient-to-r from-red-500 to-pink-500 h-2 rounded-full" style={{ width: '60%' }}></div>
+                  <div className="bg-gradient-to-r from-red-500 to-emerald-600 h-2 rounded-full" style={{ width: '60%' }}></div>
                 </div>
               </div>
               
@@ -393,7 +393,7 @@ export default function DashboardPage() {
                   <span className="text-sm text-white">99.9%</span>
                 </div>
                 <div className="w-full bg-gray-700 rounded-full h-2">
-                  <div className="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full" style={{ width: '99.9%' }}></div>
+                  <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 h-2 rounded-full" style={{ width: '99.9%' }}></div>
                 </div>
               </div>
             </div>

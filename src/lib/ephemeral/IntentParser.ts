@@ -22,7 +22,7 @@ export type IntentCategory =
   | 'analyze'     // "Show me metrics", "Analyze this data"
   | 'communicate' // "Send a message", "Check emails"
   | 'create'      // "Generate an image", "Write a report"
-  | 'monitor'     // "Show fleet status", "Check server health"
+  | 'monitor'     // "Show system status", "Check server health"
   | 'manage'      // "Organize files", "Schedule a task"
   | 'search'      // "Find information", "Search for..."
   | 'execute'     // "Run this code", "Execute command"
@@ -61,9 +61,9 @@ interface IntentPattern {
 const INTENT_PATTERNS: IntentPattern[] = [
   {
     category: 'monitor',
-    keywords: ['fleet', 'robot', 'status', 'health', 'monitor', 'sensors', 'telemetry'],
-    phrases: [/show\s+(me\s+)?(?:the\s+)?(?:fleet|robot|status|health)/i, /how\s+(?:are|is)\s+(?:the\s+)?(?:fleet|robot)/i],
-    theme: 'cyber_violet',
+    keywords: ['status', 'health', 'monitor', 'sensors', 'telemetry', 'system', 'core'],
+    phrases: [/show\s+(me\s+)?(?:the\s+)?(?:status|health|system)/i, /how\s+(?:are|is)\s+(?:the\s+)?(?:system|services)/i],
+    theme: 'monochrome_zinc',
     layout: 'grid',
     components: ['fleet_monitor', 'chart', 'insight_card', 'notification_center'],
   },
@@ -135,9 +135,65 @@ const INTENT_PATTERNS: IntentPattern[] = [
     category: 'explore',
     keywords: ['memory', 'memories', 'skills', 'browse', 'explore', 'history', 'knowledge'],
     phrases: [/(?:show|browse)\s+(?:my\s+)?(?:memories|skills|history)/i, /explore\s+/i],
-    theme: 'cyber_violet',
+    theme: 'cyber_emerald',
     layout: 'gallery',
-    components: ['memory_explorer', 'skill_launcher', 'smart_viewer'],
+    components: ['memory_explorer', 'skill_launcher'],
+  },
+  {
+    category: 'manage',
+    keywords: ['projects', 'tasks', 'scheduler', 'schedule'],
+    phrases: [/(?:show\s+)?(?:my\s+)?(?:projects|tasks)/i, /open\s+scheduler/i],
+    theme: 'ocean_deep',
+    layout: 'grid',
+    components: ['data_grid'],
+  },
+  {
+    category: 'search',
+    keywords: ['crawler', 'dataminer', 'scrape', 'extract'],
+    phrases: [/open\s+dataminer/i, /start\s+crawler/i],
+    theme: 'midnight_gold',
+    layout: 'split_v',
+    components: ['crawler_dashboard', 'data_grid'],
+  },
+  {
+    category: 'configure',
+    keywords: ['integrations', 'nava integrations', 'api'],
+    phrases: [/show\s+integrations/i, /open\s+api\s+settings/i],
+    theme: 'studio_neon',
+    layout: 'grid',
+    components: ['insight_card', 'data_grid'],
+  },
+  {
+    category: 'manage',
+    keywords: ['files', 'browser', 'workspace', 'directory'],
+    phrases: [/(?:open\s+)?(?:file\s+browser|files|workspace)/i],
+    theme: 'monochrome_zinc',
+    layout: 'focus',
+    components: ['file_browser'],
+  },
+  {
+    category: 'manage',
+    keywords: ['projects', 'tasks', 'scheduler', 'schedule'],
+    phrases: [/(?:show\s+)?(?:my\s+)?(?:projects|tasks)/i, /open\s+scheduler/i],
+    theme: 'monochrome_zinc',
+    layout: 'grid',
+    components: ['data_grid'],
+  },
+  {
+    category: 'search',
+    keywords: ['website', 'github', 'repo', 'visit', 'url'],
+    phrases: [/visit\s+(?:website|github)/i],
+    theme: 'monochrome_zinc',
+    layout: 'focus',
+    components: ['smart_viewer'],
+  },
+  {
+    category: 'converse',
+    keywords: ['chat', 'agent', 'conversational', 'talk'],
+    phrases: [/open\s+agent\s+chat/i],
+    theme: 'monochrome_zinc',
+    layout: 'focus',
+    components: ['agent_chat'],
   },
   {
     category: 'monitor',
@@ -146,6 +202,14 @@ const INTENT_PATTERNS: IntentPattern[] = [
     theme: 'analysis_red',
     layout: 'grid',
     components: ['security_audit', 'chart', 'notification_center'],
+  },
+  {
+    category: 'monitor',
+    keywords: ['trending', 'trends', 'hot', 'viral', 'scouting', 'scout', 'social', 'news', 'feed', 'twitter', 'reddit', 'hacker news'],
+    phrases: [/(?:show|what['\s]s?)\s+(?:trending|hot|viral)/i, /(?:scouting|scout)\s+(?:report|feed)/i, /(?:social|news)\s+(?:feed|trends)/i],
+    theme: 'midnight_gold',
+    layout: 'focus',
+    components: ['trending_intel'],
   },
 ];
 
@@ -172,12 +236,12 @@ const CONVERSATIONAL_FALLBACK: ParsedIntent = {
       title: 'Quick Actions',
       config: {
         actions: [
-          { label: '🔍 Search the web', intent: 'search for latest AI news' },
-          { label: '📊 Fleet dashboard', intent: 'show fleet status' },
-          { label: '🛡️ Security audit', intent: 'run security audit' },
-          { label: '💻 Open terminal', intent: 'open terminal' },
-          { label: '🧠 Browse memories', intent: 'explore my memories' },
-          { label: '⚙️ Settings', intent: 'configure settings' },
+          { label: 'Search the web', intent: 'search for latest AI news' },
+          { label: 'Core Health', intent: 'show core health status' },
+          { label: 'Security audit', intent: 'run security audit' },
+          { label: 'Open terminal', intent: 'open terminal' },
+          { label: 'Browse memories', intent: 'explore my memories' },
+          { label: 'Settings', intent: 'configure settings' },
         ],
       },
       animate: 'slide_up',
@@ -252,7 +316,7 @@ export class IntentParser {
     const components: FluxComponent[] = pattern.components.map((type, i) => ({
       type,
       id: `${type}_${Date.now()}_${i}`,
-      title: this.getComponentTitle(type, entities),
+      title: this.getComponentTitle(type, normalizedInput, entities),
       config: this.getComponentConfig(type, normalizedInput, entities),
       animate: i === 0 ? 'scale_in' as const : 'fade_in' as const,
       priority: i,
@@ -343,28 +407,38 @@ export class IntentParser {
 
   // ─── Component Config Generation ─────────────────────────────
 
-  private getComponentTitle(type: FluxComponentType, entities: IntentEntity[]): string {
+  private getComponentTitle(type: FluxComponentType, input: string, entities: IntentEntity[]): string {
     const target = entities.find(e => e.type === 'target')?.value;
+    const lc = input.toLowerCase();
+    
+    // Explicit title overrides for Agent Zero sidebar clicks
+    if (lc.includes('scheduler') || lc.includes('schedule')) return 'Agent Zero Scheduler';
+    if (lc.includes('memories') || lc.includes('memory')) return 'Agent Memory Matrix';
+    if (lc.includes('projects') || lc.includes('tasks')) return 'Project Operations';
+    if (lc.includes('crawler') || lc.includes('dataminer')) return 'Dataminer AI Swarm';
+    if (lc.includes('integrations') || lc.includes('nava integrations')) return 'System Integrations';
+    
     const titles: Record<string, string> = {
-      smart_viewer: target ? `Viewing: ${target}` : 'Document Viewer',
-      data_grid: 'Data Explorer',
+      smart_viewer: target ? `Viewing: ${target}` : input.includes('github') ? 'GitHub Repository' : input.includes('website') ? 'Web Browser' : 'Document Viewer',
+      data_grid: input.includes('project') ? 'Projects' : input.includes('task') ? 'Tasks' : input.includes('schedule') ? 'Scheduler' : 'Data Explorer',
       insight_card: 'Insights',
       visual_gallery: 'Visual Gallery',
       audio_brief: 'Audio Briefing',
       quick_action: 'Actions',
       terminal: 'Terminal',
-      agent_chat: 'NAVACLAW Agent',
+      agent_chat: 'Agent Zero Chat',
       code_editor: 'Code Editor',
-      file_browser: 'Files',
+      file_browser: 'Files Explorer',
       chart: 'Analytics',
-      form_builder: 'Configuration',
-      memory_explorer: 'Memory',
+      form_builder: input.includes('setting') ? 'System Settings' : 'Configuration',
+      memory_explorer: 'Agent Memory',
       skill_launcher: 'Skills',
-      fleet_monitor: 'Fleet Status',
+      fleet_monitor: 'System Resources',
       security_audit: 'Security Audit',
       crawler_dashboard: 'Crawler',
       video_feed: 'Live Feed',
       notification_center: 'Notifications',
+      trending_intel: 'Trending Intel',
     };
     return titles[type] ?? type;
   }
@@ -386,9 +460,14 @@ export class IntentParser {
       case 'chart':
         return { chartType: 'auto', animated: true, realtime: false };
       case 'data_grid':
-        return { editable: false, searchable: true, sortable: true };
+        return { 
+          editable: true, 
+          searchable: true, 
+          sortable: true,
+          type: input.includes('project') ? 'projects' : input.includes('task') ? 'tasks' : 'generic'
+        };
       case 'fleet_monitor':
-        return { refreshInterval: 2000, showMap: true, showTelemetry: true };
+        return { refreshInterval: 1000, showMetrics: true, showResources: true };
       case 'security_audit':
         return { scanType: 'full', target: target ?? 'system' };
       case 'code_editor':
@@ -399,6 +478,8 @@ export class IntentParser {
         return { category: 'all', showInstalled: true };
       case 'form_builder':
         return { autoSave: true };
+      case 'trending_intel':
+        return { refreshInterval: 30000 };
       default:
         return {};
     }

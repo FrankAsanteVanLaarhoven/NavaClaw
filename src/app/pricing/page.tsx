@@ -91,7 +91,7 @@ export default function PricingPage() {
       ],
       popular: true,
       icon: Crown,
-      color: 'from-purple-500 to-pink-500'
+      color: 'from-emerald-500 to-emerald-600'
     },
     {
       id: 'enterprise',
@@ -123,7 +123,7 @@ export default function PricingPage() {
       name: 'Neural Stealth Engine',
       description: 'AI-powered protection bypass with neural network learning',
       icon: Brain,
-      color: 'from-purple-500 to-pink-500'
+      color: 'from-emerald-500 to-emerald-600'
     },
     {
       name: 'Quantum TLS Engine',
@@ -147,20 +147,20 @@ export default function PricingPage() {
       name: 'Universal Crawler',
       description: 'Universal web crawling with advanced protection bypass',
       icon: Globe,
-      color: 'from-indigo-500 to-purple-500'
+      color: 'from-emerald-500 to-emerald-500'
     },
     {
       name: 'Self-Healing Security',
       description: 'Zero-day threat detection and autonomous security response',
       icon: Shield,
-      color: 'from-red-500 to-pink-500'
+      color: 'from-red-500 to-emerald-600'
     }
   ];
 
   const savings = billingCycle === 'yearly' ? 17 : 0;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-[#0b0b0f] to-slate-900">
       {/* Header */}
       <header className="bg-black/20 backdrop-blur-md border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -202,7 +202,7 @@ export default function PricingPage() {
             <button
               onClick={() => setBillingCycle(billingCycle === 'monthly' ? 'yearly' : 'monthly')}
               className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                billingCycle === 'yearly' ? 'bg-gradient-to-r from-purple-500 to-pink-500' : 'bg-gray-600'
+                billingCycle === 'yearly' ? 'bg-gradient-to-r from-emerald-500 to-emerald-600' : 'bg-gray-600'
               }`}
             >
               <span
@@ -232,13 +232,13 @@ export default function PricingPage() {
               transition={{ duration: 0.8, delay: index * 0.1 }}
               className={`relative bg-white/5 backdrop-blur-sm border rounded-2xl p-8 ${
                 tier.popular 
-                  ? 'border-purple-500/50 bg-gradient-to-br from-purple-500/10 to-pink-500/10' 
+                  ? 'border-emerald-500/50 bg-gradient-to-br from-emerald-500/10 to-emerald-600/10' 
                   : 'border-white/10'
               }`}
             >
               {tier.popular && (
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-1 rounded-full text-sm font-medium">
+                  <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-4 py-1 rounded-full text-sm font-medium">
                     Most Popular
                   </div>
                 </div>
@@ -267,7 +267,7 @@ export default function PricingPage() {
                   onClick={() => setSelectedTier(tier.id)}
                   className={`w-full py-3 px-6 rounded-lg font-semibold transition-all duration-300 ${
                     tier.popular
-                      ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:opacity-90'
+                      ? 'bg-gradient-to-r from-emerald-500 to-emerald-600 text-white hover:opacity-90'
                       : 'bg-white/10 text-white hover:bg-white/20 border border-white/20'
                   }`}
                 >
@@ -395,7 +395,7 @@ export default function PricingPage() {
           transition={{ duration: 0.8, delay: 0.7 }}
           className="text-center"
         >
-          <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-2xl p-12">
+          <div className="bg-gradient-to-r from-emerald-500/20 to-emerald-600/20 rounded-2xl p-12">
             <h2 className="text-3xl font-bold text-white mb-4">
               Ready to Get Started?
             </h2>
@@ -404,7 +404,7 @@ export default function PricingPage() {
               to build the next generation of applications.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:opacity-90 transition-opacity flex items-center justify-center space-x-2">
+              <button className="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:opacity-90 transition-opacity flex items-center justify-center space-x-2">
                 <span>Start Free Trial</span>
                 <ArrowRight className="w-5 h-5" />
               </button>

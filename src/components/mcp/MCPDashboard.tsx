@@ -263,7 +263,7 @@ export const MCPDashboard: React.FC<MCPDashboardProps> = ({
   }
 
   return (
-    <div className={`min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-6 ${className}`}>
+    <div className={`min-h-screen bg-gradient-to-br from-slate-900 via-[#0b0b0f] to-slate-900 p-6 ${className}`}>
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -381,7 +381,7 @@ export const MCPDashboard: React.FC<MCPDashboardProps> = ({
           {/* Performance Metrics */}
           <motion.div variants={itemVariants} className="bg-slate-800 rounded-xl p-6 border border-slate-700">
             <div className="flex items-center space-x-3 mb-4">
-              <BarChart3 className="h-6 w-6 text-purple-400" />
+              <BarChart3 className="h-6 w-6 text-emerald-400" />
               <h3 className="text-xl font-semibold text-white">Performance</h3>
             </div>
             
@@ -550,7 +550,7 @@ export const MCPDashboard: React.FC<MCPDashboardProps> = ({
         {/* Agents List */}
         <motion.div variants={itemVariants} className="mt-8 bg-slate-800 rounded-xl p-6 border border-slate-700">
           <div className="flex items-center space-x-3 mb-6">
-            <Users className="h-6 w-6 text-purple-400" />
+            <Users className="h-6 w-6 text-emerald-400" />
             <h3 className="text-xl font-semibold text-white">Active Agents ({agents.length})</h3>
           </div>
           
