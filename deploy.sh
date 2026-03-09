@@ -50,6 +50,10 @@ gcloud compute ssh "$INSTANCE" \
     echo '▸ [3/6] Setting up SSL for $DOMAIN...'
     sudo systemctl stop nginx || true
     sudo systemctl disable nginx || true
+    if [ -d "$DEPLOY_DIR" ]; then
+      cd $DEPLOY_DIR
+      sudo docker compose down --remove-orphans 2>/dev/null || true
+    fi
     if [ ! -f "/etc/letsencrypt/live/$DOMAIN/fullchain.pem" ]; then
       sudo certbot certonly --standalone -d $DOMAIN -d www.$DOMAIN --non-interactive --agree-tos --email frank@navaclaw.com || echo 'SSL setup skipped — configure DNS first'
     fi
@@ -72,7 +76,6 @@ ENVEOF
     
     echo '▸ [5/6] Building and starting containers...'
     cd $DEPLOY_DIR
-    sudo docker compose down --remove-orphans 2>/dev/null || true
     sudo docker compose build --no-cache navaclaw-web
     sudo docker compose up -d
     
