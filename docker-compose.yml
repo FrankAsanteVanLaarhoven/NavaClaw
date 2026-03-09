@@ -7,6 +7,8 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: navaclaw-web
+    expose:
+      - "8080"
     environment:
       - NODE_ENV=production
       - PORT=8080
@@ -15,30 +17,14 @@ services:
     env_file:
       - .env.production
     networks:
-      - navaclaw-network
-    restart: unless-stopped
+      - public-proxy
+    restart: always
     healthcheck:
       test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/"]
       interval: 30s
       timeout: 10s
       retries: 3
 
-  # Nginx reverse proxy
-  nginx:
-    image: nginx:alpine
-    container_name: navaclaw-nginx
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./ssl:/etc/nginx/ssl:ro
-    networks:
-      - navaclaw-network
-    restart: unless-stopped
-    depends_on:
-      - navaclaw-web
-
 networks:
-  navaclaw-network:
-    driver: bridge
+  public-proxy:
+    external: true

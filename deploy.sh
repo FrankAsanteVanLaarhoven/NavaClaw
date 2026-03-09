@@ -32,13 +32,12 @@ gcloud compute ssh "$INSTANCE" \
   --command="
     set -euo pipefail
     
-    echo '▸ [1/6] Installing dependencies...'
+    echo '▸ [1/5] Installing dependencies...'
     sudo apt-get update -qq
-    sudo apt-get install -y -qq git certbot python3-certbot-nginx 2>/dev/null
     sudo systemctl enable docker
     sudo systemctl start docker
     
-    echo '▸ [2/6] Cloning/pulling NavaClaw...'
+    echo '▸ [2/5] Cloning/pulling NavaClaw...'
     if [ -d '$DEPLOY_DIR' ]; then
       cd $DEPLOY_DIR
       sudo git pull origin main
@@ -47,25 +46,13 @@ gcloud compute ssh "$INSTANCE" \
       cd $DEPLOY_DIR
     fi
     
-    echo '▸ [3/6] Setting up SSL for $DOMAIN...'
-    sudo systemctl stop nginx || true
-    sudo systemctl disable nginx || true
+    echo '▸ [3/5] Cleaning up overlapping containers...'
     if [ -d "$DEPLOY_DIR" ]; then
       cd $DEPLOY_DIR
       sudo docker compose down --remove-orphans 2>/dev/null || true
     fi
-    if [ ! -f "/etc/letsencrypt/live/$DOMAIN/fullchain.pem" ]; then
-      sudo certbot certonly --standalone -d $DOMAIN -d www.$DOMAIN --non-interactive --agree-tos --email frank@navaclaw.com || echo 'SSL setup skipped — configure DNS first'
-    fi
     
-    # Link SSL certs
-    sudo mkdir -p $DEPLOY_DIR/ssl
-    if [ -f '/etc/letsencrypt/live/$DOMAIN/fullchain.pem' ]; then
-      sudo ln -sf /etc/letsencrypt/live/$DOMAIN/fullchain.pem $DEPLOY_DIR/ssl/fullchain.pem
-      sudo ln -sf /etc/letsencrypt/live/$DOMAIN/privkey.pem $DEPLOY_DIR/ssl/privkey.pem
-    fi
-    
-    echo '▸ [4/6] Creating production env...'
+    echo '▸ [4/5] Creating production env...'
     if [ ! -f "$DEPLOY_DIR/.env.production" ]; then
       sudo tee $DEPLOY_DIR/.env.production > /dev/null << 'ENVEOF'
 NODE_ENV=production
@@ -74,25 +61,23 @@ NEXT_PUBLIC_API_URL=https://navaclaw.com/api
 ENVEOF
     fi
     
-    echo '▸ [5/6] Building and starting containers...'
+    echo '▸ [5/5] Building and starting containers...'
     cd $DEPLOY_DIR
     echo '  - Cleaning up Docker disk space...'
     sudo docker system prune -af --volumes || true
-    sudo docker network prune -f || true
     sudo docker compose build --no-cache navaclaw-web
     sudo docker compose up -d
     
-    echo '▸ [6/6] Verifying...'
+    echo '▸ [Verifying]...'
     sleep 5
     sudo docker compose ps
-    curl -s -o /dev/null -w '%{http_code}' http://localhost:80 || echo 'Web not ready yet'
     
     echo ''
     echo '═══════════════════════════════════════'
-    echo '  NAVACLAW-AI deployed successfully!'
-    echo '  https://$DOMAIN'
+    echo '  NAVACLAW-AI deployed to NPM network!'
+    echo '  Ensure NPM routes to navaclaw-web:8080'
     echo '═══════════════════════════════════════'
   "
 
 echo ""
-echo "▸ Deployment complete. Visit https://$DOMAIN"
+echo "▸ Deployment complete."
